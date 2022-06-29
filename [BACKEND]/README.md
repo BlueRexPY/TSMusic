@@ -10,6 +10,5 @@ BackEnd- created with:<br>
 
 **Start**
 
-Enter your config from mongodb in "src/utils/firebase.js" "app.modules.ts"
 ### `npm i`
 ### `npm run start:dev`
