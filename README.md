@@ -30,6 +30,5 @@ Enter your config from mongodb in "src/utils/firebase.js" "app.modules.ts"
 
 **Start FrontEnd**
 
-Enter your config from mongodb in "src/utils/firebase.js" "app.modules.ts"
 ### `npm i`
 ### `npm start`
