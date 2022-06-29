@@ -1,4 +1,4 @@
-![Banner](https://cdn.discordapp.com/attachments/736633764930912257/991543066055950376/TSMUSIC.png)
+![Banner](https://cdn.discordapp.com/attachments/736633764930912257/991600460685377607/unknown.png)
 
 # TSMusic
 
