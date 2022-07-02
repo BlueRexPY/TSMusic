@@ -31,4 +31,4 @@ Enter your config from mongodb in "src/app.modules.ts"
 **Start FrontEnd**
 
 ### `npm i`
-### `npm start`
+### `npm run dev`
