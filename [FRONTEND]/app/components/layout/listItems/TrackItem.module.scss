@@ -1,0 +1,35 @@
+.tracksItem {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    background-color: #1e1f28;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-bottom: 7px;
+    cursor: pointer;
+}
+
+.side {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+    min-width: 100px;
+}
+
+.side p {
+    margin: 0;
+    color: #979797;
+    font-size: 16px;
+}
+.side h4 {
+    margin: 0;
+    font-size: 20px;
+}

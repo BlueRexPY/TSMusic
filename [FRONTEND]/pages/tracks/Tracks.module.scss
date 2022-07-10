@@ -1,0 +1,12 @@
+.trackList :first-child {
+    border-radius: 20px 20px 0 0;
+}
+.trackList :last-child { 
+    border-radius: 0 0 20px 20px;
+}
+.trackList{
+    padding: 40px;
+    border-radius: 20px;
+    min-width: 80vw;
+    min-height: 400px;
+}

@@ -1,0 +1,49 @@
+.music_bar{
+    position: absolute;
+    width: 100vw;
+    height: 120px;
+    left: 0;
+    bottom: 0;
+
+    background: #1E1F28;
+    border-radius: 10px 10px 0px 0px;
+
+    z-index: 10;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content:space-around;
+    align-content: center;
+    align-items: center;
+
+}
+
+.music_side{
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-content: flex-start;
+    align-items: center;
+    height:70%;
+    width: 20%;
+}
+
+.music_name{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: flex-start;
+    align-items: flex-start;
+    margin-left: 10px;
+    width: 90%;
+}
+
+.volume{
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
