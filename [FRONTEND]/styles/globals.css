@@ -168,21 +168,26 @@ img{
 	border-radius: 50px 50px 0 0;
 	background-image: linear-gradient(90deg, #E17ED4 0%, #E17ED4 16.98%, #FE9E9E 31.04%, #B62FC8 46.15%, #B62FC8 100%);
 	background-repeat: no-repeat;
+  padding: 0;
+  margin: 0;
 }
 #track_line::-webkit-slider-thumb {
 	-webkit-appearance: none;
 	height: 12px;
 	width: 12px;
-	border-radius:  0 20px 20px 0;
+	border-radius: 0;
 	background: #B62FC8;
 	cursor: pointer;
-
+  padding: 0;
+  margin: 0;
 }
 
 #track_line::-webkit-slider-runnable-track {
 	-webkit-appearance: none;
 	box-shadow: none;
 	background: transparent;
+  padding: 0;
+  margin: 0;
 }
 
 .icon{

@@ -1,14 +1,14 @@
 import styles from './Navigation.module.scss'
-import React from 'react'
+import React, { memo } from 'react'
 import LogoIcon from '../icons/LogoIcon'
 import HomeIcon from '../icons/HomeIcon'
 import MusicIcon from '../icons/MusicIcon'
 import AlbumIcon from '../icons/AlbumIcon'
 import LikeIcon from '../icons/LikeIcon'
 import { useRouter } from 'next/router'
-type Props = {}
 
-const Navigation = (props: Props) => {
+
+const Navigation = () => {
   const router = useRouter()
   return (
     <div className={styles.nav_bar} >
@@ -28,6 +28,6 @@ const Navigation = (props: Props) => {
 
     </div>
   )
-}
+};
 
-export default Navigation
+export default memo(Navigation)

@@ -20,24 +20,30 @@ const MusicBar = observer(() => {
     
     useEffect(() => {
         audio = new Audio(PlayerStore.PlayerSettings.track.audio)
-    }, [])
+        audio.currentTime = currentTime
+        return () => {
+            audio.pause()
+          }
+    }, [active])
 
     useEffect(() => {
         audio.src = (PlayerStore.PlayerSettings.track.audio)
     }, [PlayerStore.PlayerSettings.track])
 
     useEffect(() => {
-        if(!pause){
-            audio.play()
-        }else{
-            audio.pause()
+        if(active){
+            if(!pause){
+                audio.play()
+            }else{
+                audio.pause()
+            }
+            audio.onloadeddata = () => PlayerStore.setDuration(audio.duration)
+            audio.ontimeupdate = () => PlayerStore.setCurrentTime(audio.currentTime)
         }
-        audio.onloadeddata = () => PlayerStore.setDuration(audio.duration)
-        audio.ontimeupdate = () => PlayerStore.setCurrentTime(audio.currentTime)
-    }, [currentTime,audio,pause,active])
+    }, [currentTime,audio,pause])
 
     
-
+   
     const getVolumeBackgroundSize = () => {
         return {
             backgroundSize: `${(volume * 100) / 100}% 100%`,
@@ -46,7 +52,7 @@ const MusicBar = observer(() => {
 
     const getBackgroundSize = () => {
         return {
-            backgroundSize: `${(currentTime / duration) * 100}% 100%`,
+            backgroundSize: `${((currentTime / duration) * 100)+0.4}% 100%`
         };
     };
 
@@ -70,7 +76,7 @@ const MusicBar = observer(() => {
 
   return (
     <div className={styles.music_bar} style={!active?{display:"none"}:{display:"flex"}}>
-        <input type="range" id='track_line' min="0" max={duration} onChange={(e) => changeCurrentTime(e.target.value)} style={getBackgroundSize()} value={currentTime} ></input>
+        <input type="range" id='track_line' min="0" max={duration} onChange={(e) => changeCurrentTime(e.target.value)} value={currentTime} style={getBackgroundSize()}></input>
 
         <div className={styles.music_side}>
             <Image src={trackImg} width={80} height={80} alt="tsmusic" draggable={false}/>

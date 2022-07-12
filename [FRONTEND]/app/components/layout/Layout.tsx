@@ -14,7 +14,6 @@ const Layout = (props:Props) => {
         <div>
             {props.children}
         </div>
-
     </div>
   )
 }

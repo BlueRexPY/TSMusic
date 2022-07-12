@@ -48,7 +48,7 @@ class PlayerStore{
     setCurrentTime(currentTime: number){
         this.PlayerSettings = {...this.PlayerSettings,currentTime:currentTime}
     }
-    setActive(duration:number){
+    setActive(){
         this.PlayerSettings = {...this.PlayerSettings,active:true, currentTime:0}
     }
 }

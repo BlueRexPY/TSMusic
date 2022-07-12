@@ -24,6 +24,7 @@
       "@/store/*":["store/*"],
       "@/hooks/*":["hooks/*"],
       "@/icons/*":["components/layout/icons/*"],
+      "@/utils/*":["utils*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/tracks/createtsx"],
