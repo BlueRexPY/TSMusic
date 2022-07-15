@@ -1,0 +1,44 @@
+import PlayerStore from '@/store/PlayerStore';
+import { ITrack } from '@/store/types';
+import { useListen } from '@/hooks/useListen';
+import { DEFUALT_API } from '@/utils//apiLinks';
+import React, { useState } from 'react';
+
+
+type Props = {
+    plus?: boolean;
+    currentIndex: number;
+    trackList: ITrack[{}];
+};
+
+export const useNextTrack = ({ plus = true, currentIndex, trackList }: Props) => {
+    let nextItem = currentIndex
+
+    if (plus) {
+        if (currentIndex == trackList.length - 1) {
+            nextItem = 0
+        } else {
+            nextItem = currentIndex + 1
+        }
+
+    } else {
+        if (currentIndex == 0) {
+            nextItem = trackList.length - 1
+        } else {
+            nextItem = currentIndex - 1
+        }
+    }
+
+
+    PlayerStore.setActive();
+    PlayerStore.setPlay();
+    PlayerStore.setTrack({
+        _id: trackList[nextItem]._id,
+        name: trackList[nextItem].name,
+        artist: trackList[nextItem].artist,
+        listens: trackList[nextItem].listens,
+        picture: DEFUALT_API + trackList[nextItem].picture,
+        audio: DEFUALT_API + trackList[nextItem].audio,
+    });
+    useListen(trackList[nextItem]._id)
+};

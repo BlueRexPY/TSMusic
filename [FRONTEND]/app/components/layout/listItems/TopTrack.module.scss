@@ -1,0 +1,59 @@
+.topTrackCard {
+    background-color: #1e1f28;
+    height: 150px;
+    min-width: 350px;
+    width: 30vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 5px 5px 25px 0px #b62fc8a4, -5px -5px 25px 0px #fe9e9ead;
+    animation: animate 2s linear infinite;
+    margin-top: 40px;
+}
+
+.topTrackInfo {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    height: 20px;
+    width: 40%;
+    align-content: flex-start;
+    align-items: flex-start;
+    margin-left: 30px;
+}
+
+.topTrackInfo h2 {
+    font-size: 24px;
+    margin: 0;
+}
+.topTrackInfo h3 {
+    font-size: 22px;
+    margin: 0;
+}
+.topTrackInfo p {
+    font-size: 18px;
+    margin: 0;
+}
+.topTrackButton {
+    margin-right: 20px;
+}
+
+@keyframes animate {
+    0% {
+        box-shadow: 5px 5px 25px 0px #b62fc8a4, -5px -5px 25px 0px #fe9e9ead;
+    }
+    25% {
+        box-shadow: 0px 0px 25px 0px #b62fc8a4, 0px 0px 25px 0px #fe9e9ead;
+    }
+    50% {
+        box-shadow: -5px -5px 25px 0px #b62fc8a4, 5px 5px 25px 0px #fe9e9ead;
+    }
+    75% {
+        box-shadow: 0px 0px 25px 0px #b62fc8a4, 0px 0px 25px 0px #fe9e9ead;
+    }
+}

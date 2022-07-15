@@ -1,7 +1,7 @@
 import { makeAutoObservable } from "mobx";
 import { ITrack } from "./types";
 
-class PlayerStore{
+class PlayerStore {
     PlayerSettings = {
         active: false,
         track: {
@@ -13,43 +13,43 @@ class PlayerStore{
             audio: "https://mp3uk.net/mp3/files/gone-fludd-traxxxmania-mp3.mp3"
         },
         volume: 100,
-        duration:120,
-        currentTime:0,
+        duration: 120,
+        currentTime: 0,
         pause: true
     }
-    constructor(){
+    constructor() {
         makeAutoObservable(this)
     }
-    setPlayerSettings(track:ITrack,active:boolean,volume:number,pause:boolean,duration:number,currentTime:number){
+    setPlayerSettings(track: ITrack, active: boolean, volume: number, pause: boolean, duration: number, currentTime: number) {
         this.PlayerSettings = {
             active: active,
-            track:track,
+            track: track,
             volume: volume,
-            duration:duration,
-            currentTime:currentTime,
-            pause:pause
+            duration: duration,
+            currentTime: currentTime,
+            pause: pause
         }
     }
-    setPlay(){
-        this.PlayerSettings = {...this.PlayerSettings,pause:false}
+    setPlay() {
+        this.PlayerSettings = { ...this.PlayerSettings, pause: false }
     }
-    setPause(){
-        this.PlayerSettings = {...this.PlayerSettings,pause:true}
+    setPause() {
+        this.PlayerSettings = { ...this.PlayerSettings, pause: true }
     }
-    setTrack(track: ITrack){
-        this.PlayerSettings = {...this.PlayerSettings,track:track,currentTime:0,duration:0,active:true}
+    setTrack(track: ITrack) {
+        this.PlayerSettings = { ...this.PlayerSettings, track: track, currentTime: 0, duration: 0, active: true }
     }
-    setVolume(volume: number){
-        this.PlayerSettings = {...this.PlayerSettings,volume:volume}
+    setVolume(volume: number) {
+        this.PlayerSettings = { ...this.PlayerSettings, volume: volume }
     }
-    setDuration(duration: number){
-        this.PlayerSettings = {...this.PlayerSettings,duration:duration}
+    setDuration(duration: number) {
+        this.PlayerSettings = { ...this.PlayerSettings, duration: duration }
     }
-    setCurrentTime(currentTime: number){
-        this.PlayerSettings = {...this.PlayerSettings,currentTime:currentTime}
+    setCurrentTime(currentTime: number) {
+        this.PlayerSettings = { ...this.PlayerSettings, currentTime: currentTime }
     }
-    setActive(){
-        this.PlayerSettings = {...this.PlayerSettings,active:true, currentTime:0}
+    setActive() {
+        this.PlayerSettings = { ...this.PlayerSettings, active: true, currentTime: 0 }
     }
 }
 

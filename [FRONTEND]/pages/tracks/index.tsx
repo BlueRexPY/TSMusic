@@ -1,35 +1,67 @@
-import styles from './Tracks.module.scss'
-import Layout from '@/components/layout/Layout';
-import { useEffect } from 'react';
-import TrackItem from '@/components/layout/listItems/TrackItem';
-import { useStores } from '@/store/useStore';
-import { DEFUALT_API } from '@/utils//apiLinks';
-import { observer } from 'mobx-react-lite';
-import { ITrack } from '../../app/store/types';
-
+import styles from "./Tracks.module.scss";
+import Layout from "@/components/layout/Layout";
+import { useEffect } from "react";
+import TrackItem from "@/layout/listItems/TrackItem";
+import { useStores } from "@/hooks/useStore";
+import { DEFUALT_API } from "@/utils//apiLinks";
+import { observer } from "mobx-react-lite";
+import { useRouter } from "next/router";
+import { Button, Input } from "antd";
+import axios from "axios";
+import React, { useState } from "react";
 
 const TracksPage = observer(() => {
+  const router = useRouter();
   const { TracksStore } = useStores();
+  const [searchName, setSearchName] = useState("");
+  const { tracksList } = TracksStore;
+  const [filterTracksList, setFilterTracksList] = useState([]);
+
+  const handleChange = (text: string) => {
+    setSearchName(text);
+    if (searchName != "") {
+      axios
+        .get("http://localhost:5000/tracks/search/name?query=" + searchName)
+        .then((resp) => setFilterTracksList(resp.data));
+    }
+  };
 
   useEffect(() => {
-    TracksStore.feachTracks()
-  }, [])
-  const {tracksList} = TracksStore
-  
+    TracksStore.feachTracks();
+  }, []);
+
   return (
-    <Layout>
+    <Layout title="Tracks">
       <div className={styles.trackList}>
-        {
-          tracksList?.map((item,index) =>{
-            return(
-              <TrackItem key={index} index={index+1} name={item.name}  audio={DEFUALT_API+item.audio} artist={item.artist} picture={DEFUALT_API+item.picture} id={item._id}/>
-            )
-          })
-        }
-      </div>      
+        <Input
+          placeholder="Search"
+          onChange={(e) => handleChange(e.target.value)}
+          value={searchName}
+          id="searchBar"
+        />
+        {(searchName != "" && filterTracksList.length != 0
+          ? filterTracksList
+          : tracksList
+        )?.map((item, index) => {
+          return (
+            <TrackItem
+              key={index}
+              index={index + 1}
+              name={item.name}
+              audio={DEFUALT_API + item.audio}
+              artist={item.artist}
+              picture={DEFUALT_API + item.picture}
+              listens={item.listens}
+              id={item._id}
+            />
+          );
+        })}
+      </div>
+      <div className="createButton">
+        <Button onClick={() => router.push("tracks/create")}>Create</Button>
+      </div>
     </Layout>
-  )
+  );
+});
 
-})
-
-export default TracksPage
+export default TracksPage;

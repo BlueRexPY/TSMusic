@@ -1,0 +1,34 @@
+.authorCard {
+    background-color: #1e1f28;
+    height: 150px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    border-radius: 0px;
+}
+
+.authorInfo {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    height: 20px;
+    width: 50%;
+    align-content: flex-start;
+    align-items: flex-start;
+    margin-left: 20px;
+}
+
+.authorInfo h2 {
+    font-size: 40px;
+    margin: 0;
+}
+.authorInfo p {
+    font-size: 24px;
+    margin: 0;
+}

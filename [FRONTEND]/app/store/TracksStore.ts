@@ -1,8 +1,8 @@
 
 import { makeAutoObservable } from "mobx";
-import axios  from 'axios';
+import axios from 'axios';
 
-class TracksStore{
+class TracksStore {
     tracksList = [
         {
             _id: "0",
@@ -14,10 +14,10 @@ class TracksStore{
         }
     ]
 
-    constructor(){
+    constructor() {
         makeAutoObservable(this)
     }
-    async feachTracks(){
+    async feachTracks() {
         try {
             const response = await axios.get('http://localhost:5000/tracks')
             this.tracksList = response.data
@@ -25,7 +25,7 @@ class TracksStore{
             console.log(error)
         }
     }
-    
+
 }
 
 export default new TracksStore()

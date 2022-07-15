@@ -1,28 +1,43 @@
-import React, { memo } from "react";
+import React from "react";
 import styles from "./TrackItem.module.scss";
 import LikeIcon from "@/components/layout/icons/LikeIcon";
-import { useStores } from '@/store/useStore'
+import { useStores } from "@/hooks/useStore";
+import { useListen } from "@/hooks/useListen";
 type Props = {
   index?: number;
+  listens: number;
   name: string;
   artist: string;
   audio: string;
-  id:string;
-  picture:string;
+  id: string;
+  picture: string;
 };
 
 const TrackItem = (props: Props) => {
-  const { index, id, name, artist, picture, audio} = props;
+  const { index, id, name, artist, picture, audio, listens } = props;
 
   const { PlayerStore } = useStores();
 
-  const handeleClick = ()=>{
-    PlayerStore.setActive()
-    PlayerStore.setPlay()
-    PlayerStore.setTrack({_id:id,name:name,artist:artist,listens:0,picture:picture,audio:audio})
-  }
+  const handleClick = () => {
+    PlayerStore.setActive();
+    PlayerStore.setPlay();
+    PlayerStore.setTrack({
+      _id: id,
+      name: name,
+      artist: artist,
+      listens: listens,
+      picture: picture,
+      audio: audio,
+    });
+    useListen(id);
+  };
   return (
-    <div className={styles.tracksItem} onClick={()=>{handeleClick()}}>
+    <div
+      className={styles.tracksItem}
+      onClick={() => {
+        handleClick();
+      }}
+    >
       <div className={styles.side}>
         <p>{index}</p>
         <h4>{name}</h4>
