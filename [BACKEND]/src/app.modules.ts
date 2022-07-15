@@ -7,7 +7,7 @@ import * as path from 'path'
 
 @Module({
     imports: [
-        TrackModule,MongooseModule.forRoot('mongodb+srv://<username>:<password>@cluster0.ikchbxg.mongodb.net/<documentName>?retryWrites=true&w=majority'),
+        TrackModule,MongooseModule.forRoot(""),
         TrackModule,
         FileModule,
         ServeStaticModule.forRoot({rootPath: path.resolve(__dirname, 'static'),}),

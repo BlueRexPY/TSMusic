@@ -29,14 +29,24 @@ export class TrackController {
         return this.trackService.getAll(count, offset)
     }
 
-    @Get('/search')
-    search(@Query('query') query: string) {
-        return this.trackService.search(query)
+    @Get('/search/name')
+    searchName(@Query('query') query: string) {
+        return this.trackService.searchName(query)
+    }
+
+    @Get('/search/artist')
+    searchArtist(@Query('query') query: string) {
+        return this.trackService.searchArtist(query)
     }
 
     @Get(":id")
     getOne(@Param("id") id: ObjectId) {
         return this.trackService.getOne(id)
+    }
+    
+    @Get("/gettop/:count")
+    getTop(@Param("count")count: number) {
+        return this.trackService.getTop(count)
     }
 
     @Delete(":id")
@@ -48,6 +58,4 @@ export class TrackController {
     listen(@Param('id') id: ObjectId) {
         return this.trackService.listen(id);
     }
-
-
 }

@@ -15,7 +15,7 @@ export class TrackService {
     async create(dto:CreateTreackDto, picture, audio): Promise<Track> {
         const audioPath = this.fileService.createFile(FileType.AUDIO,audio)
         const picturePath = this.fileService.createFile(FileType.IMAGE,picture)
-        const track = await this.trackModel.create({...dto, picture:picturePath, audio:audioPath,listeners: 0})
+        const track = await this.trackModel.create({...dto,listens: 0, picture:picturePath, audio:audioPath})
         return track
     }
 
@@ -26,6 +26,11 @@ export class TrackService {
 
     async getOne(id:ObjectId): Promise<Track>  {
         const track = await this.trackModel.findById(id)
+        return track
+    }
+
+    async getTop(count = 1): Promise<Track[]> {
+        const track = await this.trackModel.find().sort({listens: -1}).limit(count)
         return track
     }
 
@@ -40,11 +45,17 @@ export class TrackService {
         track.save()
     }
 
-    async search(query: string): Promise<Track[]> {
+    async searchName(query: string): Promise<Track[]> {
         const tracks = await this.trackModel.find({
             name: {$regex: new RegExp(query, 'i')}
         })
         return tracks;
     }
 
+    async searchArtist(query: string): Promise<Track[]> {
+        const tracks = await this.trackModel.find({
+            artist: {$regex: new RegExp(query, 'i')}
+        })
+        return tracks;
+    }
 }

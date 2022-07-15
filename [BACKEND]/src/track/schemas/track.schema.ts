@@ -14,7 +14,6 @@ export class Track {
   @Prop()
   track: string;
 
-
   @Prop()
   listens: number;
 
