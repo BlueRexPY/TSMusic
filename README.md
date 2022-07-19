@@ -17,7 +17,7 @@ BackEnd- created with:<br>
 
 **link on video**
 
-<a target="_blank" href="">
+<a target="_blank" href="https://youtube.com/playlist?list=PLJKyj59yLI1xvw_tXUPW1pie8F6sJgLaa">
     <img src="https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white"/>
 </a>
 
