@@ -1,4 +1,4 @@
 export class CreateTreackDto{
-    readonly name;
-    readonly artist;
+    readonly name:string;
+    readonly artist:string;
 }

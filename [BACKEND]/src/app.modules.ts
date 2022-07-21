@@ -1,3 +1,4 @@
+import { UserModule } from './user/user.module';
 import { Module } from "@nestjs/common";
 import { TrackModule } from './track/track.module';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -7,7 +8,8 @@ import * as path from 'path'
 
 @Module({
     imports: [
-        TrackModule,MongooseModule.forRoot(""),
+        MongooseModule.forRoot("mongodb+srv://Blex:Blex@cluster0.ikchbxg.mongodb.net/TSMusic?retryWrites=true&w=majority"),
+        UserModule,
         TrackModule,
         FileModule,
         ServeStaticModule.forRoot({rootPath: path.resolve(__dirname, 'static'),}),
