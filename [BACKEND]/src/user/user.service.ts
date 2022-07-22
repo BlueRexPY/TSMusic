@@ -26,6 +26,11 @@ export class UserService {
         return user.tracks
     }
 
+    async getOneById(id:ObjectId): Promise<User> {
+        const user = await this.userModel.findById(id)
+        return user
+    }
+
     async delete(id:ObjectId): Promise<ObjectId> {
         const user = await this.userModel.findByIdAndDelete(id)
         return user._id

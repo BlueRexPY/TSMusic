@@ -1,8 +1,8 @@
 {
   "name": "music",
-  "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "version": "0.6.0",
+  "description": "Spotify clone online application",
+  "author": "Ruslan - github.com/BlueRexPY",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
