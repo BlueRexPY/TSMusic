@@ -1,15 +1,14 @@
-import StepWrapper from "@/layout/TrackCreator/StepWrapper";
-import { Button, Input, Upload } from "antd";
+import StepWrapper from "@/components/layout/TrackCreator/StepWrapper";
+import { Button, Input } from "antd";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import FileUploader from "@/layout/TrackCreator/FileUploader";
+import FileUploader from "@/components/layout/TrackCreator/FileUploader";
 import { UseInput } from "@/hooks/useInput";
 import axios from "axios";
 import { DEFUALT_API } from "@/utils//apiLinks";
 import Layout from "@/components/layout/Layout";
 
-type Props = {};
-const Create = (props: Props) => {
+const Create = () => {
   const [currentStep, setCurrentStep] = useState(0);
 
   const [audio, setAudio] = useState([{ originFileObj: "" }]);

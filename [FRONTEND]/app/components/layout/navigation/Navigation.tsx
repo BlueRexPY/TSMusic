@@ -6,9 +6,11 @@ import MusicIcon from "../icons/MusicIcon";
 import AlbumIcon from "../icons/AlbumIcon";
 import LikeIcon from "../icons/LikeIcon";
 import { useRouter } from "next/router";
+import AuthStore from "@/store/AuthStore";
 
 const Navigation = () => {
   const router = useRouter();
+  const {auth,name} = AuthStore.AuthSettings
   return (
     <div className={styles.nav_bar}>
       <LogoIcon />
@@ -21,7 +23,7 @@ const Navigation = () => {
       <div onClick={() => router.push("/albums")}>
         <AlbumIcon />
       </div>
-      <div onClick={() => router.push("/favorites")}>
+      <div onClick={() => auth?router.push("/profile/"+name):router.push("/login")}>
         <LikeIcon />
       </div>
     </div>

@@ -10,7 +10,7 @@
     align-content: center;
     align-items: center;
     border-radius: 20px;
-    box-shadow: 5px 5px 25px 0px #b62fc8a4, -5px -5px 25px 0px #fe9e9ead;
+    box-shadow: 5px 5px 25px 0px #b62fc853, -5px -5px 25px 0px #fe9e9e42;
     animation: animate 2s linear infinite;
     margin-top: 40px;
 }
@@ -45,15 +45,15 @@
 
 @keyframes animate {
     0% {
-        box-shadow: 5px 5px 25px 0px #b62fc8a4, -5px -5px 25px 0px #fe9e9ead;
+        box-shadow: 5px 5px 25px 0px #b62fc853, -5px -5px 25px 0px #fe9e9e42;
     }
     25% {
-        box-shadow: 0px 0px 25px 0px #b62fc8a4, 0px 0px 25px 0px #fe9e9ead;
+        box-shadow: 0px 0px 25px 0px #b62fc853, 0px 0px 25px 0px #fe9e9e42;
     }
     50% {
-        box-shadow: -5px -5px 25px 0px #b62fc8a4, 5px 5px 25px 0px #fe9e9ead;
+        box-shadow: -5px -5px 25px 0px #b62fc853, 5px 5px 25px 0px #fe9e9e42;
     }
     75% {
-        box-shadow: 0px 0px 25px 0px #b62fc8a4, 0px 0px 25px 0px #fe9e9ead;
+        box-shadow: 0px 0px 25px 0px #b62fc853, 0px 0px 25px 0px #fe9e9e42;
     }
 }

@@ -8,12 +8,17 @@ import axios from "axios";
 import React, { useState } from "react";
 import AuthorItem from "@/components/layout/listItems/AuthorItem";
 import { ITrack } from "@/store/types";
-const AuthorPage = observer((author) => {
+
+type author = {
+  author: ITrack[];
+};
+
+const AuthorPage = observer((author:author) => {
   const [tracksList, setTracksList] = useState<ITrack[]>(author.author);
 
   return (
     <Layout title={tracksList[0].artist} keywords={tracksList[0].artist}>
-      <div className={styles.trackList}>
+      <div className="tracksList">
         <AuthorItem
           count={tracksList.length}
           artist={tracksList[0].artist}

@@ -21,7 +21,7 @@ const TracksPage = observer(() => {
     setSearchName(text);
     if (searchName != "") {
       axios
-        .get("http://localhost:5000/tracks/search/name?query=" + searchName)
+        .get(DEFUALT_API+"tracks/search/name?query=" + searchName)
         .then((resp) => setFilterTracksList(resp.data));
     }
   };
@@ -58,7 +58,7 @@ const TracksPage = observer(() => {
         })}
       </div>
       <div className="createButton">
-        <Button onClick={() => router.push("tracks/create")}>Create</Button>
+        <Button onClick={() => router.push("tracks/create")}><p className="gray">Create</p></Button>
       </div>
     </Layout>
   );

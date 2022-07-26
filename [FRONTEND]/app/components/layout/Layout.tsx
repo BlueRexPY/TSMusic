@@ -1,8 +1,8 @@
 import Head from "next/head";
-import { FC, ReactChild, ReactNode } from "react";
-import styles from "./Layout.module.css";
+import { ReactChild, ReactNode } from "react";
 import MusicBar from "@/layout/musicBar/MusicBar";
 import Navigation from "@/layout/navigation/Navigation";
+import ProfileMenu from "./profile/ProfileMenu";
 
 type Props = {
   children: ReactChild | ReactNode;
@@ -27,6 +27,7 @@ const Layout = (props: Props) => {
         <meta name="keywords" content={`Music, Tracks, Artists, ${keywords}`} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
+      <ProfileMenu/>
       <Navigation />
       <MusicBar />
       <div className="col">{props.children}</div>
