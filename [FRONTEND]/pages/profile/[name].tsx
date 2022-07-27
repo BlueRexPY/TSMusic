@@ -47,7 +47,7 @@ const Profile = observer((user:user) => {
               picture={DEFUALT_API + item?.picture}
               id={item?._id}
               listens={item?.listens}
-              hardLiked={AuthStore.AuthSettings.name===user.name}
+              hardLike={AuthStore.AuthSettings.name==user.name}
             />
           );
         })}
