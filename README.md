@@ -35,8 +35,7 @@ Enter your config from mongodb in "src/app.modules.ts"
 **ToDo**
  - Responsive layout, 
  - Endless track list, 
- - Login, 
- - Profile, 
+ - Login token, 
  - Playlists, 
  - Albums.
 
