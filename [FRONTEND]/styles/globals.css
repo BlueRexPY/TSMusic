@@ -154,6 +154,10 @@ img {
   height: 300px;
 }
 
+.h350 {
+  height: 350px;
+}
+
 .h400 {
   height: 400px;
 }
@@ -278,4 +282,8 @@ img {
   border-radius: 20px;
   min-width: 80vw;
   min-height: 400px;
+}
+
+.clickAble:hover{
+  cursor:pointer;
 }

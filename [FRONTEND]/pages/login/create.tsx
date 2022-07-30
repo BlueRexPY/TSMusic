@@ -5,25 +5,24 @@ import Head from 'next/head';
 import axios from 'axios';
 import { DEFUALT_API } from '@/utils//apiLinks';
 import { useRouter } from 'next/router';
-import { useStores } from '@/hooks/useStore';
 import Link from 'next/link';
 
-const login = () => {
+const CreateUser = () => {
     const router = useRouter();
     const name = UseInput("");
     const password = UseInput("");
-    const { AuthStore } = useStores();
+    const repeatPassword = UseInput("");
 
     const login = () =>{
-        if((name.value.length <= 16) && (name.value.length >= 4) && (password.value.length <= 16) && (password.value.length >= 4)){
+        if((name.value.length <= 16) && (name.value.length >= 4) && (password.value.length <= 16) && (password.value.length >= 4) &&(password.value == repeatPassword.value)){
             axios.post(DEFUALT_API+'users/login/', { name: name.value, password: password.value})
             .then((resp) => {
                 if(resp.data.length>0){
-                    AuthStore.Login(name.value)
-                    message.success("Success")
-                    router.push("profile/"+name)
+                    message.error("Error: entered an incorrect password or a user with the same name already exists")
                 }else{
-                    message.error("Error: the user was not found, perhaps the password or username is incorrect")
+                    axios.post(DEFUALT_API+'users/', { name: name.value, password: password.value})
+                    message.success("Success")
+                    router.push("/login")
                 }
             })
         }else{
@@ -44,29 +43,32 @@ const login = () => {
         onFinish={login}
         autoComplete="off"
         >
-            <h1 className='fs_32 gray'>Welcome Back</h1>
+            <h1 className='fs_32 gray'>Create new account</h1>
             <Form.Item
             className='col'
             rules={[{ required: true, message: 'Please input your username!' }]}>
-                <Input placeholder="name" {...name}/>
+                <Input  placeholder="name" className='w200' {...name}/>
             </Form.Item>
             <Form.Item 
+            
             className='col'
             rules={[{ required: true, message: 'Please input your password!' }]}>
-                <Input.Password  placeholder="password" {...password}/>
+                <Input.Password placeholder="password" {...password}/>
             </Form.Item>
-
-            <Form.Item name="remember" valuePropName="checked" className='col'>
-                <Checkbox>Remember</Checkbox>
+            <Form.Item 
+            
+            className='col'
+            rules={[{ required: true, message: 'Please input your password!' }]}>
+                <Input.Password placeholder="repeat password" {...repeatPassword}/>
             </Form.Item>
 
             <Form.Item className='col' >
                 <Button type="primary" htmlType="submit">Submit</Button>
             </Form.Item>
             <Form.Item className='col'>
-                <Link href={"/login/create"}>
+                <Link href={"/login"}>
                     <a>
-                        <p className='gray'>or create new</p>
+                        <p className='gray'>or login</p>
                     </a>
                 </Link>                
             </Form.Item>
@@ -76,4 +78,4 @@ const login = () => {
   )
 }
 
-export default login
+export default CreateUser

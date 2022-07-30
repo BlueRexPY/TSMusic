@@ -7,8 +7,14 @@ import { UseInput } from "@/hooks/useInput";
 import axios from "axios";
 import { DEFUALT_API } from "@/utils//apiLinks";
 import Layout from "@/components/layout/Layout";
+import { useEffect } from 'react';
+import { useStores } from "@/hooks/useStore";
+import Link from "next/link";
 
 const Create = () => {
+
+  const { AuthStore } = useStores();
+
   const [currentStep, setCurrentStep] = useState(0);
 
   const [audio, setAudio] = useState([{ originFileObj: "" }]);
@@ -37,51 +43,68 @@ const Create = () => {
     setCurrentStep((prev) => prev - 1);
   };
 
-  return (
-    <Layout title="create">
-      <StepWrapper currentStep={currentStep} steps={["Info", "Audio", "Photo"]}>
-        {currentStep === 0 && (
-          <div className="col w300 h100 jc_sa big">
-            <Input placeholder="Title" {...name} />
-            <Input placeholder="Author" {...artist} />
-          </div>
-        )}
-        {currentStep === 1 && (
-          <>
-            <p className="fs_20 gray">Audio</p>
-            <FileUploader
-              maxCount={1}
-              setFile={setAudio}
-              acceptFile={"audio/*"}
-            />
-          </>
-        )}
-        {currentStep === 2 && (
-          <>
-            <p className="fs_20 gray">Photo</p>
-            <FileUploader maxCount={1} setFile={setPhoto} />
-          </>
-        )}
-        <div className="row jc_sa w150 big">
-          <Button disabled={currentStep === 0} onClick={toBack}>
-            Back
-          </Button>
-          <Button
-            onClick={toNext}
-            disabled={
-              (currentStep === 0 && name.value == "") ||
-              (currentStep === 0 && artist.value == "") ||
-              (currentStep === 1 && audio == [{ originFileObj: "" }]) ||
-              (currentStep === 2 && photo == [{ originFileObj: "" }])
-            }
-            type="primary"
-          >
-            Next
-          </Button>
-        </div>
-      </StepWrapper>
-    </Layout>
-  );
-};
 
+
+  if(AuthStore.AuthSettings.name==="admin"){
+    return (
+      <Layout title="create">
+        <StepWrapper currentStep={currentStep} steps={["Info", "Audio", "Photo"]}>
+          {currentStep === 0 && (
+            <div className="col w300 h100 jc_sa big">
+              <Input placeholder="Title" {...name} />
+              <Input placeholder="Author" {...artist} />
+            </div>
+          )}
+          {currentStep === 1 && (
+            <>
+              <p className="fs_20 gray">Audio</p>
+              <FileUploader
+                maxCount={1}
+                setFile={setAudio}
+                acceptFile={"audio/*"}
+              />
+            </>
+          )}
+          {currentStep === 2 && (
+            <>
+              <p className="fs_20 gray">Photo</p>
+              <FileUploader maxCount={1} setFile={setPhoto} />
+            </>
+          )}
+          <div className="row jc_sa w150 big">
+            <Button disabled={currentStep === 0} onClick={toBack}>
+              Back
+            </Button>
+            <Button
+              onClick={toNext}
+              disabled={
+                (currentStep === 0 && name.value == "") ||
+                (currentStep === 0 && artist.value == "") ||
+                (currentStep === 1 && audio == [{ originFileObj: "" }]) ||
+                (currentStep === 2 && photo == [{ originFileObj: "" }])
+              }
+              type="primary"
+            >
+              Next
+            </Button>
+          </div>
+        </StepWrapper>
+      </Layout>
+    )
+  }
+  else{
+    return(
+      <Layout title="create">
+        <div className="w300 h300 col big">
+          <Link href={"/"}>
+              <a>
+                  <p className='gray'>you do not have access to this page, go back</p>
+              </a>
+          </Link>   
+
+        </div>
+      </Layout>
+    )
+  }
+  }
 export default Create;

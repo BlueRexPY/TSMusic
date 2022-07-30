@@ -35,7 +35,6 @@ const TrackItem = observer((props: Props) => {
     axios.get(DEFUALT_API+"users/"+AuthStore.AuthSettings.name).then(p=>p.data.includes(id)?setLiked(true):hardLike?setLiked(true):setLiked(false))
   }, [])
 
-
   const like = ()=>{
     if(auth){
       axios.post(DEFUALT_API+'users/update/', { userName: AuthStore.AuthSettings.name, trackId: id})

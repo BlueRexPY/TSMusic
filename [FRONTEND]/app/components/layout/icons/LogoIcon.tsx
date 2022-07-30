@@ -6,7 +6,7 @@ type Props = {};
 
 const LogoIcon = (props: Props) => {
   return (
-    <div>
+    <>
       <Link href={"/"}>
         <a>
           <Image
@@ -18,7 +18,7 @@ const LogoIcon = (props: Props) => {
           />
         </a>
       </Link>
-    </div>
+    </>
   );
 };
 

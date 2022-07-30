@@ -16,7 +16,9 @@ const TracksPage = observer(() => {
   const [searchName, setSearchName] = useState("");
   const { tracksList } = TracksStore;
   const [filterTracksList, setFilterTracksList] = useState([]);
+  const { AuthStore } = useStores();
 
+ 
   const handleChange = (text: string) => {
     setSearchName(text);
     if (searchName != "") {
@@ -25,6 +27,14 @@ const TracksPage = observer(() => {
         .then((resp) => setFilterTracksList(resp.data));
     }
   };
+
+  const adminMode=()=>{
+    if( AuthStore.AuthSettings.name==="admin"){
+      return(<div className="createButton" >
+      <Button onClick={() => router.push("tracks/create")}><p className="gray">Create</p></Button>
+    </div>)
+    }
+  }
 
   useEffect(() => {
     TracksStore.feachTracks();
@@ -57,9 +67,8 @@ const TracksPage = observer(() => {
           );
         })}
       </div>
-      <div className="createButton">
-        <Button onClick={() => router.push("tracks/create")}><p className="gray">Create</p></Button>
-      </div>
+      
+      {adminMode()}
     </Layout>
   );
 });

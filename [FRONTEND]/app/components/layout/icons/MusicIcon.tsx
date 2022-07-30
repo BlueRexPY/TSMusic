@@ -6,7 +6,7 @@ type Props = {};
 
 const MusicIcon = (props: Props) => {
   return (
-    <div>
+    <>
       <Image
         className="icon"
         src={logoImg}
@@ -15,7 +15,7 @@ const MusicIcon = (props: Props) => {
         alt="Music"
         draggable={false}
       />
-    </div>
+    </>
   );
 };
 
