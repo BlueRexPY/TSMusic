@@ -37,5 +37,6 @@ Enter your config from mongodb in "src/app.modules.ts"
  - Endless track list, 
  - Login token, 
  - Playlists, 
+ - Roles,
  - Albums.
 
