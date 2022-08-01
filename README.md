@@ -1,6 +1,6 @@
 ![Banner](https://cdn.discordapp.com/attachments/736633764930912257/991600460685377607/unknown.png)
 
-# TSMusic
+# TSMusic - https://ts-music.vercel.app/
 
 ### Description 
 FronEnd- created with:<br>
@@ -15,8 +15,10 @@ BackEnd- created with:<br>
     <img src="https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white"/>
 <br>
 
-**link on video**
-
+**link on video and site**
+<a target="_blank" href="https://ts-music.vercel.app/">
+    <img src="https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white"/>
+</a>
 <a target="_blank" href="https://youtube.com/playlist?list=PLJKyj59yLI1xvw_tXUPW1pie8F6sJgLaa">
     <img src="https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white"/>
 </a>
