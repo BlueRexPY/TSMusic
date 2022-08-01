@@ -10,7 +10,8 @@ import { useListen } from "@/hooks/useListen";
 import { Spin } from "antd";
 
 const TopTrack = () => {
-  const [track, setTrack] = useState<ITrack[]>([{}]);
+  const { TracksStore } = useStores();
+  const [track, setTrack] = useState<ITrack[]>([TracksStore.tracksList[0]]);
   const { PlayerStore } = useStores();
   const [loading, setLoading] = useState(true)
 
