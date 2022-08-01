@@ -7,7 +7,6 @@ import { UseInput } from "@/hooks/useInput";
 import axios from "axios";
 import { DEFUALT_API } from "@/utils//apiLinks";
 import Layout from "@/components/layout/Layout";
-import { useEffect } from 'react';
 import { useStores } from "@/hooks/useStore";
 import Link from "next/link";
 
@@ -45,7 +44,7 @@ const Create = () => {
 
 
 
-  if(AuthStore.AuthSettings.name==="admin"){
+  if(AuthStore.AuthSettings.roles.includes("ADMIN")){
     return (
       <Layout title="create">
         <StepWrapper currentStep={currentStep} steps={["Info", "Audio", "Photo"]}>

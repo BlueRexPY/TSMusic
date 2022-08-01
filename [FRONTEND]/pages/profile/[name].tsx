@@ -7,6 +7,7 @@ import { observer } from 'mobx-react-lite';
 import TrackItem from '@/components/layout/listItems/TrackItem';
 import ProfileCard from '@/components/layout/profile/ProfileCard';
 import { useStores } from '@/hooks/useStore';
+import { Spin } from 'antd';
 
 type user = {
   name: string;
@@ -16,7 +17,7 @@ type user = {
 const Profile = observer((user:user) => {
   const [tracksList, setTracksList] = useState([{}])
   const { AuthStore } = useStores();
-
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
       const feach = async () => {
@@ -24,11 +25,17 @@ const Profile = observer((user:user) => {
           const res = await axios.get(DEFUALT_API+"tracks/"+item)
           return res.data
         }))
+        setLoading(false)
         setTracksList(newArr);
       }
     feach()  
   }, [])
 
+
+  if(loading){
+    return (
+      <Layout title={user.name}><Spin/></Layout>)
+  }else{
   return (
     <Layout title={user.name}>
      <div className="tracksList">
@@ -53,7 +60,7 @@ const Profile = observer((user:user) => {
         })}
       </div>
     </Layout>
-  )
+  )}
 })
 export default Profile
 

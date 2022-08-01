@@ -4,6 +4,7 @@ class AuthStore {
     AuthSettings = {
         auth: false,
         name:"",
+        roles:[""]
     }
     constructor(){
         makeObservable(this,{
@@ -12,12 +13,11 @@ class AuthStore {
             Logout: action
         })
     }
-    Login(name:string) {
-        this.AuthSettings = { auth:true, name:name }
+    Login(name:string,roles:string[]) {
+        this.AuthSettings = { auth:true, name:name, roles:roles }
     };
     Logout(){
-       
-        this.AuthSettings = { auth:false, name:"" }
+        this.AuthSettings = { auth:false, name:"", roles:[""] }
     };
 }
 

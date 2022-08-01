@@ -7,15 +7,18 @@ import { ITrack } from "@/store/types";
 import StopIcon from "../icons/StopIcon";
 import { useStores } from "@/hooks/useStore";
 import { useListen } from "@/hooks/useListen";
+import { Spin } from "antd";
 
 const TopTrack = () => {
   const [track, setTrack] = useState<ITrack[]>([{}]);
   const { PlayerStore } = useStores();
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     axios
       .get("http://localhost:5000/tracks/gettop/1")
-      .then((resp) => setTrack(resp.data));
+      .then((resp) => setTrack(resp.data))
+      .then(() =>setLoading(false))
   }, []);
 
   const { _id, name, artist, picture, audio, listens }: ITrack = track[0];
@@ -38,6 +41,10 @@ const TopTrack = () => {
     useListen(_id);
   };
 
+
+  if(loading){
+    return (<Spin/>)
+  }else{
   return (
     <div className={styles.topTrackCard}>
       <Image
@@ -64,7 +71,7 @@ const TopTrack = () => {
         <StopIcon />
       </div>
     </div>
-  );
+  )}
 };
 
 export default TopTrack;

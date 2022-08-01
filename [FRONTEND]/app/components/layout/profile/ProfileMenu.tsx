@@ -9,7 +9,7 @@ const ProfileMenu = () => {
     const { AuthStore } = useStores();
     const router = useRouter();
     const logout = () =>{
-      console.log("Dsd")
+      localStorage.clear()
       AuthStore.Logout()
     }
 

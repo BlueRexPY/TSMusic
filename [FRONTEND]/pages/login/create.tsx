@@ -12,13 +12,14 @@ const CreateUser = () => {
     const name = UseInput("");
     const password = UseInput("");
     const repeatPassword = UseInput("");
+    const regExp = '^[a-zA-Z]+$';
 
     const login = () =>{
-        if((name.value.length <= 16) && (name.value.length >= 4) && (password.value.length <= 16) && (password.value.length >= 4) &&(password.value == repeatPassword.value)){
-            axios.post(DEFUALT_API+'users/login/', { name: name.value, password: password.value})
+        if((name.value.length <= 16) && (name.value.length >= 4) && (password.value.length <= 16) && (password.value.length >= 4) &&(password.value == repeatPassword.value) && (name.value.search(regExp)===0)&& (password.value.search(regExp)===0)){
+            axios.get(DEFUALT_API+'users/try/'+name.value)
             .then((resp) => {
-                if(resp.data.length>0){
-                    message.error("Error: entered an incorrect password or a user with the same name already exists")
+                if(resp.data===true){
+                    message.error("Error: a user with the same name already exists")
                 }else{
                     axios.post(DEFUALT_API+'users/', { name: name.value, password: password.value})
                     message.success("Success")
@@ -26,7 +27,7 @@ const CreateUser = () => {
                 }
             })
         }else{
-            message.error("Error: max length - 16, min - 4")
+            message.error("Error: max length - 16, min - 4, only Latin can be used")
         } 
     }
   return (
@@ -47,19 +48,17 @@ const CreateUser = () => {
             <Form.Item
             className='col'
             rules={[{ required: true, message: 'Please input your username!' }]}>
-                <Input  placeholder="name" className='w200' {...name}/>
+                <Input placeholder="name" maxLength={16} minLength={4} className='w200' {...name}/>
             </Form.Item>
             <Form.Item 
-            
             className='col'
             rules={[{ required: true, message: 'Please input your password!' }]}>
-                <Input.Password placeholder="password" {...password}/>
+                <Input.Password  maxLength={16} minLength={4}  placeholder="password" {...password}/>
             </Form.Item>
             <Form.Item 
-            
             className='col'
             rules={[{ required: true, message: 'Please input your password!' }]}>
-                <Input.Password placeholder="repeat password" {...repeatPassword}/>
+                <Input.Password maxLength={16} minLength={4}  placeholder="repeat password" {...repeatPassword}/>
             </Form.Item>
 
             <Form.Item className='col' >

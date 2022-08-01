@@ -6,12 +6,13 @@ import { useStores } from "@/hooks/useStore";
 import { DEFUALT_API } from "@/utils//apiLinks";
 import { observer } from "mobx-react-lite";
 import { useRouter } from "next/router";
-import { Button, Input } from "antd";
+import { Button, Input, Spin } from 'antd';
 import axios from "axios";
 import React, { useState } from "react";
 
 const TracksPage = observer(() => {
   const router = useRouter();
+  const [loading, setLoading] = useState(true)
   const { TracksStore } = useStores();
   const [searchName, setSearchName] = useState("");
   const { tracksList } = TracksStore;
@@ -29,7 +30,7 @@ const TracksPage = observer(() => {
   };
 
   const adminMode=()=>{
-    if( AuthStore.AuthSettings.name==="admin"){
+    if(AuthStore.AuthSettings.roles.includes("ADMIN")){
       return(<div className="createButton" >
       <Button onClick={() => router.push("tracks/create")}><p className="gray">Create</p></Button>
     </div>)
@@ -38,8 +39,12 @@ const TracksPage = observer(() => {
 
   useEffect(() => {
     TracksStore.feachTracks();
+    setLoading(false)
   }, []);
-
+  if(loading){
+    return (
+      <Layout title="Tracks"><Spin/></Layout>)
+  }else{
   return (
     <Layout title="Tracks">
       <div className={styles.trackList}>
@@ -70,7 +75,7 @@ const TracksPage = observer(() => {
       
       {adminMode()}
     </Layout>
-  );
+  )}
 });
 
 export default TracksPage;

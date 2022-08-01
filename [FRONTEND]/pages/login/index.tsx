@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Button, Checkbox, Form, Input, message } from 'antd';
 import { UseInput } from '@/hooks/useInput';
 import Head from 'next/head';
@@ -12,16 +12,26 @@ const login = () => {
     const router = useRouter();
     const name = UseInput("");
     const password = UseInput("");
+    const [rememberMe,setRememberMe] = useState(true);
+    
     const { AuthStore } = useStores();
 
+    const regExp = '^[a-zA-Z]+$';
+
     const login = () =>{
-        if((name.value.length <= 16) && (name.value.length >= 4) && (password.value.length <= 16) && (password.value.length >= 4)){
+        if((name.value.length <= 16) && (name.value.length >= 4) && (password.value.length <= 16) && (password.value.length >= 4) && (name.value.search(regExp)===0)&& (password.value.search(regExp)===0)){
             axios.post(DEFUALT_API+'users/login/', { name: name.value, password: password.value})
             .then((resp) => {
-                if(resp.data.length>0){
-                    AuthStore.Login(name.value)
+                if(resp.data){
+                    if(rememberMe){
+                        localStorage.setItem('userName', resp.data.name);
+                        localStorage.setItem('userPassword', password.value);
+                    }else{
+                        localStorage.clear()
+                    }
+                    AuthStore.Login(resp.data.name,resp.data.roles)
                     message.success("Success")
-                    router.push("profile/"+name)
+                    router.push("profile/"+name.value)
                 }else{
                     message.error("Error: the user was not found, perhaps the password or username is incorrect")
                 }
@@ -48,18 +58,16 @@ const login = () => {
             <Form.Item
             className='col'
             rules={[{ required: true, message: 'Please input your username!' }]}>
-                <Input placeholder="name" {...name}/>
+                <Input maxLength={16} minLength={4} placeholder="name" {...name}/>
             </Form.Item>
             <Form.Item 
             className='col'
             rules={[{ required: true, message: 'Please input your password!' }]}>
-                <Input.Password  placeholder="password" {...password}/>
+                <Input.Password maxLength={16} minLength={4} placeholder="password" {...password}/>
             </Form.Item>
-
             <Form.Item name="remember" valuePropName="checked" className='col'>
-                <Checkbox>Remember</Checkbox>
+                <Checkbox onChange={()=>setRememberMe(!rememberMe)}>Remember</Checkbox>
             </Form.Item>
-
             <Form.Item className='col' >
                 <Button type="primary" htmlType="submit">Submit</Button>
             </Form.Item>
