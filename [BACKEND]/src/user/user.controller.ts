@@ -25,6 +25,12 @@ export class UserController {
         return this.userService.getOneByName(userName)
     }
 
+    @Get("/try/:name")
+    getTryByName(@Param("name") userName: string) {
+        return this.userService.getTryByName(userName)
+    }
+
+
     @Get("/id/:id")
     getOneById(@Param("id") userName: ObjectId) {
         return this.userService.getOneById(userName)
@@ -45,3 +51,4 @@ export class UserController {
         return this.userService.updateTrack(dto)
     }
 }
+

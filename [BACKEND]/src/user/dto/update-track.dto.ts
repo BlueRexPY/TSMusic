@@ -1,5 +1,5 @@
 import { ObjectId } from 'mongoose';
 export class UpdateTrackDto {
-    userId:ObjectId;
+    userName:string;
     trackId:ObjectId;
 }

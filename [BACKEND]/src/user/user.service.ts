@@ -4,6 +4,7 @@ import { User,UserDocument } from './schemas/user.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, ObjectId } from 'mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
+const bcrypt = require('bcryptjs');
 
 @Injectable()
 export class UserService {
@@ -12,7 +13,8 @@ export class UserService {
     ) { }
 
     async create(dto:CreateUserDto): Promise<User> {
-        const user = await this.userModel.create({...dto,tracks:[]})
+        const hashPassword = bcrypt.hashSync(dto.password,5);
+        const user = await this.userModel.create({password: hashPassword,name: dto.name,tracks:[],roles:["USER"]})
         return user
     }
 
@@ -26,6 +28,15 @@ export class UserService {
         return user.tracks
     }
 
+    async getTryByName(userName:string): Promise<boolean> {
+        const user = await this.userModel.findOne({name:userName})
+        if(user){
+            return true
+        }else{
+            return false
+        }
+    }
+
     async getOneById(id:ObjectId): Promise<User> {
         const user = await this.userModel.findById(id)
         return user
@@ -37,17 +48,22 @@ export class UserService {
     }
 
     async updateTrack(dto:UpdateTrackDto): Promise<ObjectId[]> {
-        let user = await this.userModel.findById(dto.userId)
+        let user = await this.userModel.findOne({ "name": dto.userName })
         if (user.tracks.includes(dto.trackId)){
-            user = await this.userModel.findByIdAndUpdate(dto.userId,{"tracks": user.tracks.filter( i => i !== dto.trackId )})
+            user = await this.userModel.findByIdAndUpdate(user.id,{"tracks": user.tracks.filter( i => i !== dto.trackId )})
         }else{
-            user = await this.userModel.findByIdAndUpdate(dto.userId,{"tracks": [...user.tracks, dto.trackId]})
+            user = await this.userModel.findByIdAndUpdate(user.id,{"tracks": [...user.tracks, dto.trackId]})
         }
         return user.tracks
     }
 
-    async login(dto:CreateUserDto): Promise<User[]> {
-        const user = await this.userModel.find({$and:[{name:dto.name},{password:dto.password}]})
-        return user
+    async login(dto:CreateUserDto): Promise<User> {
+        const user = await this.userModel.findOne({name:dto.name})
+        if(user){
+            const validPassword = bcrypt.compareSync(dto.password,user.password)
+            if(validPassword){
+                return user
+            }
+        }
     }
 }
