@@ -8,7 +8,7 @@ import React, { useState } from 'react';
 type Props = {
     plus?: boolean;
     currentIndex: number;
-    trackList: ITrack[{}];
+    trackList: ITrack[];
 };
 
 export const useNextTrack = ({ plus = true, currentIndex, trackList }: Props) => {

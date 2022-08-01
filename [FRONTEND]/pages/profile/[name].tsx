@@ -8,6 +8,7 @@ import TrackItem from '@/components/layout/listItems/TrackItem';
 import ProfileCard from '@/components/layout/profile/ProfileCard';
 import { useStores } from '@/hooks/useStore';
 import { Spin } from 'antd';
+import { ITrack } from '@/store/types';
 
 type user = {
   name: string;
@@ -15,7 +16,7 @@ type user = {
 };
 
 const Profile = observer((user:user) => {
-  const [tracksList, setTracksList] = useState([{}])
+  const [tracksList, setTracksList] = useState<ITrack[]>([])
   const { AuthStore } = useStores();
   const [loading, setLoading] = useState(true)
 

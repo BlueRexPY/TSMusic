@@ -1,10 +1,7 @@
-import { DEFUALT_API } from "@/utils//apiLinks";
 import Image from "next/image";
 import React from "react";
 import styles from "./ProfileCard.module.scss";
 import userLogo from "@/assets/img/userLogo.svg";
-import { Button } from "antd";
-import { useStores } from "@/hooks/useStore";
 
 type Props = {
   count: number;
@@ -12,7 +9,6 @@ type Props = {
 };
 const ProfileCard = (props: Props) => {
   const { count, name} = props;
-  const { AuthStore } = useStores();
 
   return (
     <div className={styles.profileCard}>

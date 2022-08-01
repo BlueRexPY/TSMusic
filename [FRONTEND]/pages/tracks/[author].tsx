@@ -1,6 +1,5 @@
 import { observer } from "mobx-react-lite";
 import Layout from "@/components/layout/Layout";
-import styles from "./Tracks.module.scss";
 import { DEFUALT_API } from "@/utils//apiLinks";
 import TrackItem from "@/components/layout/listItems/TrackItem";
 import { GetServerSideProps } from "next";
