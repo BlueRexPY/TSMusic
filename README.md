@@ -37,4 +37,5 @@ Enter your config from mongodb in "src/app.modules.ts"
  - Endless track list, 
  - Playlists, 
  - Albums.
+ - User avatars by name
 
