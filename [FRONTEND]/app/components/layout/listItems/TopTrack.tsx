@@ -16,8 +16,10 @@ const TopTrack = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    axios.get(DEFUALT_API+"gettop/1")
+      .then((resp) => console.log(resp.data))
     axios
-      .get("http://localhost:5000/tracks/gettop/1")
+      .get(DEFUALT_API+"gettop/1")
       .then((resp) => setTrack(resp.data))
       .then(() =>setLoading(false))
   }, []);
