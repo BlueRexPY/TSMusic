@@ -1,2 +1,2 @@
-export const DEFUALT_API = "http://localhost:5000/"
+export const DEFUALT_API = "https://tsmusicb.herokuapp.com/"
 
