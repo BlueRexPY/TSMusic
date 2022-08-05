@@ -1,17 +1,18 @@
-import { NestFactory } from "@nestjs/core"
-import { async } from "rxjs"
-import { AppModule } from "./app.modules"
+import { NestFactory } from '@nestjs/core';
+import { env } from 'process';
+import { AppModule } from './app.modules';
 
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  const cors=require("cors");
+  const corsOptions ={
+    origin:'*', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200,
+  }
 
-const start = async () => {
-    try {
-        const PORT = process.env.PORT || 5000
-        const app = await NestFactory.create(AppModule)
-        app.enableCors()
-        await app.listen(PORT, ()=> console.log(`start server on ${PORT} port`))
-    } catch (e) {
-        console.log(e)
-    }
+  app.use(cors(corsOptions))
+  
+  await app.listen(process.env.PORT || 5000);
 }
-
-start()
+bootstrap();
