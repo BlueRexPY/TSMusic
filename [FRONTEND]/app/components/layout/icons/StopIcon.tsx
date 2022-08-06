@@ -1,10 +1,8 @@
-import Link from "next/link";
 import React from "react";
 import logoImg from "@/assets/img/stop.svg";
 import Image from "next/image";
-type Props = {};
 
-const StopIcon = (props: Props) => {
+const StopIcon = () => {
   return (
     <>
       <Image

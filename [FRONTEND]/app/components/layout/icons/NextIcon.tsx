@@ -1,10 +1,9 @@
-import Link from "next/link";
 import React from "react";
 import logoImg from "@/assets/img/next.svg";
 import Image from "next/image";
-type Props = {};
 
-const NextIcon = (props: Props) => {
+
+const NextIcon = () => {
   return (
     <div>
       <Image

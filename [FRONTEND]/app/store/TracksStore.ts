@@ -1,6 +1,7 @@
 
 import { makeAutoObservable } from "mobx";
 import axios from 'axios';
+import { DEFUALT_API } from '../utils/apiLinks';
 
 class TracksStore {
     tracksList = [
@@ -19,7 +20,7 @@ class TracksStore {
     }
     async feachTracks() {
         try {
-            const response = await axios.get('http://localhost:5000/tracks')
+            const response = await axios.get(DEFUALT_API+'tracks')
             this.tracksList = response.data
         } catch (error) {
             console.log(error)

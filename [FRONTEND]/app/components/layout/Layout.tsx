@@ -25,7 +25,6 @@ const Layout = (props: Props) => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    
    if(localStorage.getItem('userName')){
     axios.post(DEFUALT_API+'users/login/', { name: localStorage.getItem('userName'), password: localStorage.getItem('userPassword')})
    .then((resp) => {

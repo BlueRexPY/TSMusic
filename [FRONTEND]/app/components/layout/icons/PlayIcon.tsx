@@ -1,10 +1,8 @@
-import Link from "next/link";
 import React from "react";
 import logoImg from "@/assets/img/play.svg";
 import Image from "next/image";
-type Props = {};
 
-const PlayIcon = (props: Props) => {
+const PlayIcon = () => {
   return (
     <>
       <Image

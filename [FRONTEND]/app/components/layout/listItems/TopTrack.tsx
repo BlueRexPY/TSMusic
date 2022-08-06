@@ -1,7 +1,7 @@
-import { DEFUALT_API } from "@/utils//apiLinks";
+import { CONFIG, DEFUALT_API } from "@/utils//apiLinks";
 import axios from "axios";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import styles from "./TopTrack.module.scss";
 import { ITrack } from "@/store/types";
 import StopIcon from "../icons/StopIcon";
@@ -14,12 +14,10 @@ const TopTrack = () => {
   const [track, setTrack] = useState<ITrack[]>([TracksStore.tracksList[0]]);
   const { PlayerStore } = useStores();
   const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    axios.get(DEFUALT_API+"gettop/1")
-      .then((resp) => console.log(resp.data))
+  
+  useLayoutEffect(() => {
     axios
-      .get(DEFUALT_API+"gettop/1")
+      .get(DEFUALT_API+"tracks/gettop/1")
       .then((resp) => setTrack(resp.data))
       .then(() =>setLoading(false))
   }, []);

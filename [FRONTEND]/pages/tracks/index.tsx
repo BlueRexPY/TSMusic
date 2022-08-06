@@ -3,7 +3,7 @@ import Layout from "@/components/layout/Layout";
 import { useEffect } from "react";
 import TrackItem from "@/layout/listItems/TrackItem";
 import { useStores } from "@/hooks/useStore";
-import { DEFUALT_API } from "@/utils//apiLinks";
+import { CONFIG, DEFUALT_API } from "@/utils//apiLinks";
 import { observer } from "mobx-react-lite";
 import { useRouter } from "next/router";
 import { Button, Input, Spin } from 'antd';
@@ -25,7 +25,7 @@ const TracksPage = observer(() => {
     if (searchName != "") {
       axios
         .get(DEFUALT_API+"tracks/search/name?query=" + searchName)
-        .then((resp) => setFilterTracksList(resp.data));
+        .then((resp) => setFilterTracksList(resp.data))
     }
   };
 

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import React from "react";
 import logoImg from "@/assets/img/bigLogo.svg";
 import Image from "next/image";

@@ -1,10 +1,8 @@
-import Link from "next/link";
 import React from "react";
 import logoImg from "@/assets/img/album.svg";
 import Image from "next/image";
-type Props = {};
 
-const AlbumIcon = (props: Props) => {
+const AlbumIcon = () => {
   return (
     <div>
       <Image

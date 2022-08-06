@@ -21,17 +21,19 @@ const Profile = observer((user:user) => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-      const feach = async () => {
-        const newArr = await Promise.all(user.tracks.map(async function(item){
-          const res = await axios.get(DEFUALT_API+"tracks/"+item)
-          return res.data
-        }))
-        setLoading(false)
-        setTracksList(newArr);
-      }
-    feach()  
+    const feach = async () => {
+      const newArr = await Promise.all(user.tracks.map(async function(item){
+        const res = await axios.get(DEFUALT_API+"tracks/"+item)
+        return res.data
+      }))
+      setLoading(false)
+      setTracksList(newArr);
+    }
+    feach()
+    return () => {
+      feach
+    }
   }, [])
-
 
   if(loading){
     return (

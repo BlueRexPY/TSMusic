@@ -283,7 +283,6 @@ img {
   min-width: 80vw;
   min-height: 400px;
 }
-
-.clickAble:hover{
-  cursor:pointer;
+.clickable{
+  cursor: pointer;
 }

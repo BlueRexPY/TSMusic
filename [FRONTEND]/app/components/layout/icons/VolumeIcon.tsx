@@ -1,10 +1,8 @@
-import Link from "next/link";
 import React from "react";
 import logoImg from "@/assets/img/volume.svg";
 import Image from "next/image";
-type Props = {};
 
-const VolumeIcon = (props: Props) => {
+const VolumeIcon = () => {
   return (
     <div>
       <Image

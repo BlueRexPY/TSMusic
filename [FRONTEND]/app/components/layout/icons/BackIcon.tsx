@@ -1,10 +1,8 @@
-import Link from "next/link";
 import React from "react";
 import logoImg from "@/assets/img/back.svg";
 import Image from "next/image";
-type Props = {};
 
-const BackIcon = (props: Props) => {
+const BackIcon = () => {
   return (
     <div>
       <Image

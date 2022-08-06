@@ -20,7 +20,7 @@ const Navigation = () => {
       <div onClick={() => router.push("/tracks")}>
         <MusicIcon />
       </div>
-      <div onClick={() => router.push("/albums")}>
+      <div onClick={() => router.push("/playlists")}>
         <AlbumIcon />
       </div>
       <div onClick={() => auth?router.push("/profile/"+name):router.push("/login")}>

@@ -131,7 +131,7 @@ const MusicBar = observer(() => {
         <div className={styles.music_name}>
           <p className="white fs_24">{name}</p>
           <p
-            className="white fs_20 clic"
+            className="white fs_20 clickable"
             onClick={() => router.push("/tracks/" + artist)}
           >
             {artist}
