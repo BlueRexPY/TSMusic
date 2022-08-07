@@ -1,4 +1,4 @@
-.profileCard {
+.playlistCard {
     background-color: #1e1f28;
     height: 150px;
     width: 100%;
@@ -12,7 +12,7 @@
     border-radius: 0px;
 }
 
-.profileCardInfo {
+.playlistInfo {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -24,11 +24,11 @@
     margin-left: 20px;
 }
 
-.profileCardInfo h2 {
-    font-size: 40px;
+.playlistInfo h2 {
+    font-size: 30px;
     margin: 0;
 }
-.profileCardInfo p {
-    font-size: 24px;
+.playlistInfo p {
+    font-size: 18px;
     margin: 0;
 }

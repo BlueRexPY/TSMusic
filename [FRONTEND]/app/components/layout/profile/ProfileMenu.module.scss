@@ -1,4 +1,4 @@
-.container{
+.container {
     position: absolute;
     top: 20px;
     right: 20px;
@@ -13,24 +13,24 @@
     justify-content: center;
     align-content: center;
     align-items: center;
-    transition: .2s;
+    transition: 0.2s;
     cursor: pointer;
 }
 
-.logo{
+.logo {
     padding-right: 10px;
 }
 
-.container p{
+.container p {
     display: none;
 }
-.container:hover p{
-    display:block;
+.container:hover p {
+    display: block;
 }
 
-.container:hover{
+.container:hover {
     width: auto;
     padding-right: 10px;
-    transition: .2s;
+    transition: 0.2s;
     box-shadow: 2px 2px 10px 0px #b62fc829, -2px -2px 10px 0px #fe9e9e1c;
 }

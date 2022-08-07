@@ -10,7 +10,7 @@ import AuthStore from "@/store/AuthStore";
 
 const Navigation = () => {
   const router = useRouter();
-  const {auth,name} = AuthStore.AuthSettings
+  const { auth, name } = AuthStore.AuthSettings;
   return (
     <div className={styles.nav_bar}>
       <LogoIcon />
@@ -23,7 +23,11 @@ const Navigation = () => {
       <div onClick={() => router.push("/playlists")}>
         <AlbumIcon />
       </div>
-      <div onClick={() => auth?router.push("/profile/"+name):router.push("/login")}>
+      <div
+        onClick={() =>
+          auth ? router.push("/profile/" + name) : router.push("/login")
+        }
+      >
         <LikeIcon />
       </div>
     </div>

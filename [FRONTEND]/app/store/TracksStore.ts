@@ -20,7 +20,7 @@ class TracksStore {
     }
     async feachTracks() {
         try {
-            const response = await axios.get(DEFUALT_API+'tracks')
+            const response = await axios.get(DEFUALT_API + 'tracks')
             this.tracksList = response.data
         } catch (error) {
             console.log(error)

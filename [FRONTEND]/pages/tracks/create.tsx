@@ -11,7 +11,6 @@ import { useStores } from "@/hooks/useStore";
 import Link from "next/link";
 
 const Create = () => {
-
   const { AuthStore } = useStores();
 
   const [currentStep, setCurrentStep] = useState(0);
@@ -42,12 +41,13 @@ const Create = () => {
     setCurrentStep((prev) => prev - 1);
   };
 
-
-
-  if(AuthStore.AuthSettings.roles.includes("ADMIN")){
+  if (AuthStore.AuthSettings.roles.includes("ADMIN")) {
     return (
       <Layout title="create">
-        <StepWrapper currentStep={currentStep} steps={["Info", "Audio", "Photo"]}>
+        <StepWrapper
+          currentStep={currentStep}
+          steps={["Info", "Audio", "Photo"]}
+        >
           {currentStep === 0 && (
             <div className="col w300 h100 jc_sa big">
               <Input placeholder="Title" {...name} />
@@ -89,21 +89,21 @@ const Create = () => {
           </div>
         </StepWrapper>
       </Layout>
-    )
-  }
-  else{
-    return(
+    );
+  } else {
+    return (
       <Layout title="create">
         <div className="w300 h300 col big">
           <Link href={"/"}>
-              <a>
-                  <p className='gray'>you do not have access to this page, go back</p>
-              </a>
-          </Link>   
-
+            <a>
+              <p className="gray">
+                you do not have access to this page, go back
+              </p>
+            </a>
+          </Link>
         </div>
       </Layout>
-    )
+    );
   }
-  }
+};
 export default Create;

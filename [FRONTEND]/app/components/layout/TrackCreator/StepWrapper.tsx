@@ -14,7 +14,7 @@ const StepWrapper = (props: Props) => {
   return (
     <div className="paper container">
       <Steps size="default" current={props.currentStep}>
-        {steps.map((title,i) => (
+        {steps.map((title, i) => (
           <Step key={i} title={title} />
         ))}
       </Steps>

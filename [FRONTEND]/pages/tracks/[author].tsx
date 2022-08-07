@@ -12,7 +12,7 @@ type author = {
   author: ITrack[];
 };
 
-const AuthorPage = observer((author:author) => {
+const AuthorPage = observer((author: author) => {
   const [tracksList, setTracksList] = useState<ITrack[]>(author.author);
 
   return (

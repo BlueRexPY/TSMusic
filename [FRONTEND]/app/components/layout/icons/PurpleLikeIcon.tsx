@@ -1,14 +1,14 @@
 import React from "react";
 import LikePurple from "@/assets/img/likePurple.svg";
 import Image from "next/image";
-import { observer } from 'mobx-react-lite';
+import { observer } from "mobx-react-lite";
 type Props = {
   width?: number;
   height?: number;
 };
 
 const PurpleLikeIcon = observer((props: Props) => {
-  const { width = 50, height = 50} = props;
+  const { width = 50, height = 50 } = props;
   return (
     <>
       <Image
@@ -20,7 +20,7 @@ const PurpleLikeIcon = observer((props: Props) => {
         draggable={false}
       />
     </>
-  )
-})
+  );
+});
 
 export default PurpleLikeIcon;

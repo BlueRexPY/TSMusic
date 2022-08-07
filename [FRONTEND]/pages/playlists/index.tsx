@@ -1,13 +1,8 @@
-import React from 'react'
-import Layout from '@/components/layout/Layout';
+import React from "react";
+import Layout from "@/components/layout/Layout";
 
 const Playlists = () => {
-  return (
-    <Layout title="playlist">
+  return <Layout title="playlist"></Layout>;
+};
 
-
-    </Layout>
-  )
-}
-
-export default Playlists
+export default Playlists;

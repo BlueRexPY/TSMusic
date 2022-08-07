@@ -5,25 +5,26 @@ import axios from "axios";
 import { DEFUALT_API } from "@/utils//apiLinks";
 import { observer } from "mobx-react-lite";
 import TrackItem from "@/components/layout/listItems/TrackItem";
-import ProfileCard from "@/components/layout/profile/ProfileCard";
-import { useStores } from "@/hooks/useStore";
 import { Spin } from "antd";
 import { ITrack } from "@/store/types";
+import PlaylistCard from "@/components/layout/playlist/PlaylistCard";
 
-type user = {
+type album = {
   name: string;
+  author: string;
   tracks: string[];
+  listens: number;
+  image: string;
 };
 
-const Profile = observer((user: user) => {
+const Playlist = observer((album: album) => {
   const [tracksList, setTracksList] = useState<ITrack[]>([]);
-  const { AuthStore } = useStores();
   const [loading, setLoading] = useState(true);
-
+ 
   useEffect(() => {
     const feach = async () => {
       const newArr = await Promise.all(
-        user.tracks.map(async function (item) {
+        album.tracks.map(async function (item) {
           const res = await axios.get(DEFUALT_API + "tracks/" + item);
           return res.data;
         })
@@ -39,15 +40,21 @@ const Profile = observer((user: user) => {
 
   if (loading) {
     return (
-      <Layout title={user.name}>
+      <Layout title={album.name}>
         <Spin />
       </Layout>
     );
   } else {
     return (
-      <Layout title={user.name}>
+      <Layout title={album.name}>
         <div className="tracksList">
-          <ProfileCard count={tracksList?.length} name={user.name} />
+          <PlaylistCard
+            count={tracksList?.length}
+            name={album.name}
+            author={album.author}
+            listens={album.listens}
+            image={album.image}
+          />
           {tracksList?.map((item, index) => {
             return (
               <TrackItem
@@ -59,7 +66,6 @@ const Profile = observer((user: user) => {
                 picture={DEFUALT_API + item?.picture}
                 id={item?._id}
                 listens={item?.listens}
-                hardLike={AuthStore.AuthSettings.name == user.name}
               />
             );
           })}
@@ -68,16 +74,19 @@ const Profile = observer((user: user) => {
     );
   }
 });
-export default Profile;
+export default Playlist;
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const name = params?.name;
-  const response = await axios.get(DEFUALT_API + "users/" + params?.name);
+  const response = await axios.get(DEFUALT_API + "albums/" + params?.name);
 
   return {
     props: {
-      tracks: response.data,
+      tracks: response.data.tracks,
       name: name,
+      author: response.data.author,
+      listens: response.data.listens,
+      image: response.data.picture,
     },
   };
 };

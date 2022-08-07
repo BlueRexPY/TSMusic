@@ -7,7 +7,7 @@ type Props = {
   name: string;
 };
 const ProfileCard = (props: Props) => {
-  const { count, name} = props;
+  const { count, name } = props;
   return (
     <div className={styles.profileCard}>
       <Image
@@ -19,8 +19,8 @@ const ProfileCard = (props: Props) => {
         draggable={false}
       />
       <div className={styles.profileCardInfo}>
-          <h2>{name}</h2>
-          <p>tracks: {count}</p>
+        <h2>{name}</h2>
+        <p>tracks: {count}</p>
       </div>
     </div>
   );

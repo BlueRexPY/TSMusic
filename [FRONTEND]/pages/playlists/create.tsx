@@ -1,7 +1,7 @@
 import StepWrapper from "@/components/layout/TrackCreator/StepWrapper";
 import { Button, Input, Select } from "antd";
 import { useRouter } from "next/router";
-import React, { useState,useLayoutEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import FileUploader from "@/components/layout/TrackCreator/FileUploader";
 import { UseInput } from "@/hooks/useInput";
 import axios from "axios";
@@ -20,7 +20,7 @@ const Create = () => {
   const { tracksList } = TracksStore;
 
   const name = UseInput("");
-  const artist = AuthStore.AuthSettings.name
+  const author = AuthStore.AuthSettings.name;
   const router = useRouter();
 
   const toNext = () => {
@@ -29,12 +29,12 @@ const Create = () => {
     } else {
       const formData = new FormData();
       formData.append("name", name.value);
-      formData.append("artist", artist);
+      formData.append("author", author);
       formData.append("picture", photo[0].originFileObj);
-      formData.append("tracks", newTrackList.join(' '));
+      formData.append("tracks", newTrackList.join(" "));
       axios
         .post(DEFUALT_API + "albums", formData)
-        .then((resp) => router.push("/playlists"))
+        .then((resp) => router.push("/playlists/" + name.value))
         .catch((e) => console.log(e));
     }
   };
@@ -51,15 +51,16 @@ const Create = () => {
     TracksStore.feachTracks();
   }, []);
 
-
-
-  if(1===1){
+  if (1 === 1) {
     return (
       <Layout title="create">
-        <StepWrapper currentStep={currentStep} steps={["Info", "Audio", "Photo"]}>
+        <StepWrapper
+          currentStep={currentStep}
+          steps={["Info", "Audio", "Photo"]}
+        >
           {currentStep === 0 && (
             <div className="col w300 h100 jc_sa big">
-              <Input placeholder="Title" {...name}/>
+              <Input placeholder="Title" {...name} />
             </div>
           )}
           {currentStep === 1 && (
@@ -69,11 +70,14 @@ const Create = () => {
                 mode="multiple"
                 allowClear
                 className="big"
-                style={{ width: '60%' }}
+                style={{ width: "60%" }}
                 placeholder="Please select"
-                onChange={handleChange}>
-                {tracksList.map(i=><Option key={i._id}>{i.name}</Option>)}
-                </Select>
+                onChange={handleChange}
+              >
+                {tracksList.map((i) => (
+                  <Option key={i._id}>{i.name}</Option>
+                ))}
+              </Select>
             </>
           )}
           {currentStep === 2 && (
@@ -100,20 +104,21 @@ const Create = () => {
           </div>
         </StepWrapper>
       </Layout>
-    )
-  }
-  else{
-    return(
+    );
+  } else {
+    return (
       <Layout title="create">
         <div className="w300 h300 col big">
           <Link href={"/"}>
-              <a>
-                  <p className='gray'>you do not have access to this page, go back</p>
-              </a>
-          </Link>   
+            <a>
+              <p className="gray">
+                you do not have access to this page, go back
+              </p>
+            </a>
+          </Link>
         </div>
       </Layout>
-    )
+    );
   }
-  }
+};
 export default Create;
