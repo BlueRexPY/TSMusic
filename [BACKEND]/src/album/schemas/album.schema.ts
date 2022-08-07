@@ -6,7 +6,7 @@ export type AlbumDocument = Album & Document;
 @Schema()
 export class Album {
   @Prop()
-  tracks: ObjectId[];
+  tracks: string[];
 
   @Prop()
   name: string;
@@ -19,7 +19,6 @@ export class Album {
 
   @Prop()
   listens: number;
-  
 }
 
 export const AlbumSchema = SchemaFactory.createForClass(Album);

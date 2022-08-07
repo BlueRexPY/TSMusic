@@ -14,7 +14,7 @@ export class AlbumService {
 
     async create(dto:CreateAlbumDto, picture): Promise<Album> {
         const picturePath = this.fileService.createFile(FileType.IMAGE,picture)
-        const albume = await this.albumModel.create({...dto,listens: 0, picture:picturePath})
+        const albume = await this.albumModel.create({tracks:dto.tracks.split(" "),name:dto.name,author:dto.author,listens: 0, picture:picturePath})
         return albume
     }
 
@@ -23,14 +23,14 @@ export class AlbumService {
         return albums;
     }
 
-    async getOneById(id:ObjectId): Promise<Album> {
+    async getOneById(id:ObjectId): Promise<{listens:number,author:string,tracks:string[],name:string,picture:string}> {
         const albume = await this.albumModel.findById(id)
-        return albume
+        return {tracks:albume.tracks,listens:albume.listens,author:albume.author,name:albume.name,picture:albume.picture}
     }
 
-    async getOneByName(albumeName:string): Promise<ObjectId[]> {
+    async getOneByName(albumeName:string): Promise<{listens:number,author:string,tracks:string[],name:string,picture:string}> {
         const albume = await this.albumModel.findOne({name:albumeName})
-        return albume.tracks
+        return {tracks:albume.tracks,listens:albume.listens,author:albume.author,name:albume.name,picture:albume.picture}
     }
 
     async getTop(count = 5): Promise<Album[]> {
