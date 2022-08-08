@@ -36,9 +36,5 @@ Enter your config from mongodb in "src/app.modules.ts"
 ### `npm run dev`
 
 **ToDo**
- - Responsive layout, 
- - Endless track list, 
- - Playlists, 
- - Albums.
- - User avatars by name
+ - Responsive layout
 
