@@ -1,0 +1,16 @@
+
+.palylistList :first-child {
+    border-radius: 20px;
+}
+.palylistList {
+    padding: 40px;
+    border-radius: 20px;
+    width: 80vw;
+    min-height: 400px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+}

@@ -1,5 +1,5 @@
-import React from "react";
-import { Button, Checkbox, Form, Input, message } from "antd";
+import React, { useState } from "react";
+import { Button, Form, Input, message, Spin } from "antd";
 import { UseInput } from "@/hooks/useInput";
 import Head from "next/head";
 import axios from "axios";
@@ -13,6 +13,7 @@ const CreateUser = () => {
   const password = UseInput("");
   const repeatPassword = UseInput("");
   const regExp = "^[a-zA-Z]+$";
+  const [loading, setLoading] = useState(false);
 
   const login = () => {
     if (
@@ -28,6 +29,7 @@ const CreateUser = () => {
         if (resp.data === true) {
           message.error("Error: a user with the same name already exists");
         } else {
+          setLoading(true)
           axios.post(DEFUALT_API + "users/", {
             name: name.value,
             password: password.value,
@@ -40,72 +42,80 @@ const CreateUser = () => {
       message.error("Error: max length - 16, min - 4, only Latin can be used");
     }
   };
-  return (
-    <>
-      <Head>
-        <title>{`TSMusic - Login`}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
-      <div className="h300 w400 paper col b20 big">
-        <Form
-          className="h250 w400 col jc_sb"
-          name="basic"
-          initialValues={{ remember: true }}
-          onFinish={login}
-          autoComplete="off"
-        >
-          <h1 className="fs_32 gray">Create new account</h1>
-          <Form.Item
-            className="col"
-            rules={[{ required: true, message: "Please input your username!" }]}
+  if(!loading){
+    return (
+      <>
+        <Head>
+          <title>{`TSMusic - Login`}</title>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+        </Head>
+        <div className="h300 w400 paper col b20 big">
+          <Form
+            className="h250 w400 col jc_sb"
+            name="basic"
+            initialValues={{ remember: true }}
+            onFinish={login}
+            autoComplete="off"
           >
-            <Input
-              placeholder="name"
-              maxLength={16}
-              minLength={4}
-              className="w200"
-              {...name}
-            />
-          </Form.Item>
-          <Form.Item
-            className="col"
-            rules={[{ required: true, message: "Please input your password!" }]}
-          >
-            <Input.Password
-              maxLength={16}
-              minLength={4}
-              placeholder="password"
-              {...password}
-            />
-          </Form.Item>
-          <Form.Item
-            className="col"
-            rules={[{ required: true, message: "Please input your password!" }]}
-          >
-            <Input.Password
-              maxLength={16}
-              minLength={4}
-              placeholder="repeat password"
-              {...repeatPassword}
-            />
-          </Form.Item>
-
-          <Form.Item className="col">
-            <Button type="primary" htmlType="submit">
-              Submit
-            </Button>
-          </Form.Item>
-          <Form.Item className="col">
-            <Link href={"/login"}>
-              <a>
-                <p className="gray">or login</p>
-              </a>
-            </Link>
-          </Form.Item>
-        </Form>
+            <h1 className="fs_32 gray">Create new account</h1>
+            <Form.Item
+              className="col"
+              rules={[{ required: true, message: "Please input your username!" }]}
+            >
+              <Input
+                placeholder="name"
+                maxLength={16}
+                minLength={4}
+                className="w200"
+                {...name}
+              />
+            </Form.Item>
+            <Form.Item
+              className="col"
+              rules={[{ required: true, message: "Please input your password!" }]}
+            >
+              <Input.Password
+                maxLength={16}
+                minLength={4}
+                placeholder="password"
+                {...password}
+              />
+            </Form.Item>
+            <Form.Item
+              className="col"
+              rules={[{ required: true, message: "Please input your password!" }]}
+            >
+              <Input.Password
+                maxLength={16}
+                minLength={4}
+                placeholder="repeat password"
+                {...repeatPassword}
+              />
+            </Form.Item>
+  
+            <Form.Item className="col">
+              <Button type="primary" htmlType="submit">
+                Submit
+              </Button>
+            </Form.Item>
+            <Form.Item className="col">
+              <Link href={"/login"}>
+                <a>
+                  <p className="gray">or login</p>
+                </a>
+              </Link>
+            </Form.Item>
+          </Form>
+        </div>
+      </>
+    );
+  }else{
+    return(
+      <div className="w300 h300 col">
+        <Spin/>
       </div>
-    </>
-  );
+    )
+  }
 };
 
 export default CreateUser;

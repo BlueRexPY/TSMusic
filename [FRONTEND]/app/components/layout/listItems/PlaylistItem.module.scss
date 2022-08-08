@@ -1,0 +1,36 @@
+.PlaylistCard{
+    width: 250px;
+    height: 324px;
+    background: #1E1F28;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content:space-between;
+    align-content: center;
+    align-items: center;
+    margin: 15px;
+    cursor: pointer;
+}
+
+.PlaylistCardInfo{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+}
+
+.PlaylistCardInfo p {
+    margin: 0;
+    color: #979797;
+    font-size: 16px;
+}
+.PlaylistCardInfo h4 {
+    margin: 0;
+    color: #fff;
+    font-size: 20px;
+}

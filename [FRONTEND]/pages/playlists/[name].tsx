@@ -22,7 +22,7 @@ const Playlist = observer((album: album) => {
   const [loading, setLoading] = useState(true);
  
   useEffect(() => {
-    const feach = async () => {
+    const fetch = async () => {
       const newArr = await Promise.all(
         album.tracks.map(async function (item) {
           const res = await axios.get(DEFUALT_API + "tracks/" + item);
@@ -32,9 +32,9 @@ const Playlist = observer((album: album) => {
       setLoading(false);
       setTracksList(newArr);
     };
-    feach();
+    fetch();
     return () => {
-      feach;
+      fetch;
     };
   }, []);
 

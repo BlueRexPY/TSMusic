@@ -1,14 +1,13 @@
 import styles from "./Tracks.module.scss";
 import Layout from "@/components/layout/Layout";
-import { useEffect } from "react";
 import TrackItem from "@/layout/listItems/TrackItem";
 import { useStores } from "@/hooks/useStore";
-import { CONFIG, DEFUALT_API } from "@/utils//apiLinks";
+import { DEFUALT_API } from "@/utils//apiLinks";
 import { observer } from "mobx-react-lite";
 import { useRouter } from "next/router";
 import { Button, Input, Spin } from "antd";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const TracksPage = observer(() => {
   const router = useRouter();
@@ -32,7 +31,7 @@ const TracksPage = observer(() => {
     if (AuthStore.AuthSettings.roles.includes("ADMIN")) {
       return (
         <div className="createButton">
-          <Button onClick={() => router.push("tracks/create")}>
+          <Button onClick={() => router.push("tracks/tools/create")}>
             <p className="gray">Create</p>
           </Button>
         </div>
@@ -41,7 +40,7 @@ const TracksPage = observer(() => {
   };
 
   useEffect(() => {
-    TracksStore.feachTracks();
+    TracksStore.fetchTracks();
     setLoading(false);
   }, []);
   if (loading) {
