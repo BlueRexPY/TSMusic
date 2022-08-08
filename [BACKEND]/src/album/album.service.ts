@@ -48,4 +48,12 @@ export class AlbumService {
         albume.listens += 1
         albume.save()
     }
+
+    async searchName(query: string): Promise<Album[]> {
+        const albums = await this.albumModel.find({
+            name: {$regex: new RegExp(query, 'i')}
+        })
+        return albums;
+    }
+
 }

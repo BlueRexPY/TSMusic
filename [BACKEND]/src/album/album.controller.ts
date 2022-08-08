@@ -44,4 +44,9 @@ export class AlbumController {
         return this.albumService.listen(id);
     }
 
+    @Get('/search/name')
+    searchName(@Query('query') query: string) {
+        return this.albumService.searchName(query)
+    }
+
 }
