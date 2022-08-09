@@ -34,7 +34,3 @@ Enter your config from mongodb in "src/app.modules.ts"
 
 ### `npm i`
 ### `npm run dev`
-
-**ToDo**
- - Responsive layout
-
