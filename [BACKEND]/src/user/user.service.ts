@@ -18,7 +18,7 @@ export class UserService {
         return user
     }
 
-    async getAll(count = 10, offset = 0): Promise<User[]> {
+    async getAll(count = 100, offset = 0): Promise<User[]> {
         const user = await this.userModel.find().skip(Number(offset)).limit(Number(count));
         return user
     }
