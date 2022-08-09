@@ -62,7 +62,7 @@ const Create = () => {
 
   if(!loading) {
     return (
-      <Layout title="create">
+      <Layout title="Create">
         <StepWrapper
           currentStep={currentStep}
           steps={["Info", "Audio", "Photo"]}

@@ -119,15 +119,16 @@ const MusicBar = observer(() => {
       ></input>
 
       <div className={styles.music_side}>
-        <Image
-          loader={myLoader}
-          src={DEFUALT_API + picture}
-          width={80}
-          height={80}
-          alt="tsmusic"
-          draggable={false}
-        />
-
+        <div id="imageMusicBar">
+          <Image
+            loader={myLoader}
+            src={DEFUALT_API + picture}
+            width={80}
+            height={80}
+            alt="tsmusic"
+            draggable={false}
+          />
+        </div>
         <div className={styles.music_name}>
           <p className="white fs_24">{name}</p>
           <p
@@ -140,7 +141,7 @@ const MusicBar = observer(() => {
       </div>
 
       <div className="row">
-        <p className="white  fs_24">
+        <p className="white fs_24" id="time">
           {Math.floor(currentTime / 60)}:
           {Math.floor(currentTime - Math.floor(currentTime / 60) * 60) < 10
             ? "0"
@@ -166,7 +167,7 @@ const MusicBar = observer(() => {
       </div>
 
       <div className="row">
-        <p className="gray fs_24">
+        <p className="gray fs_24" id="time">
           {Math.floor(duration / 60)}:
           {Math.floor(duration - Math.floor(duration / 60) * 60) < 10
             ? "0"

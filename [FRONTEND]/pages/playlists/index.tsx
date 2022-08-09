@@ -45,7 +45,7 @@ const Playlists = observer(() => {
   }, [])
 
   if(!loading){
-    return <Layout title="playlist">
+    return <Layout title="Playlist">
     <div className={styles.palylistList}>
           <Input
             placeholder="Search"

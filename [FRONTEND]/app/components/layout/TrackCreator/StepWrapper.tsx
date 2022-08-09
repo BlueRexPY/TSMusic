@@ -12,12 +12,15 @@ const StepWrapper = (props: Props) => {
   const { Step } = Steps;
   const { currentStep = 0, steps = ["Info", "Audio", "Photo"] } = props;
   return (
-    <div className="paper container">
+    <div className="paper container aCenter">
+      <div id="steps" >
       <Steps size="default" current={props.currentStep}>
         {steps.map((title, i) => (
           <Step key={i} title={title} />
         ))}
       </Steps>
+      </div>
+      
       <div className="container col jc_sa">{props.children}</div>
     </div>
   );

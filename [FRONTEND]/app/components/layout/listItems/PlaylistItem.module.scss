@@ -34,3 +34,9 @@
     color: #fff;
     font-size: 20px;
 }
+
+@media (max-width: 600px) {
+    .PlaylistCard {
+        height: 280px;
+    }
+}

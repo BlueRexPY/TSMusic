@@ -2,16 +2,42 @@ html,
 body {
   padding: 0;
   margin: 0;
-  height: 100vh;
   font-family: "Baloo Bhaijaan 2";
   background: linear-gradient(180deg, #290c26 0%, #000000 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh;
+}
+
+body::-webkit-scrollbar {
+  width: 15px;
+  height: 15px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #19171f;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #1e1f28;
+  border-radius: 100vh;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #2d1c39;
+}
+
+.layout{
+  padding-top: 50px;
+  padding-bottom: 100px;
+  overflow:hidden;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-content: center;
   align-items: center;
-  padding-bottom: 50px;
+  height: 100%;
 }
 
 * {
@@ -81,6 +107,9 @@ img {
 .gradient {
   background: linear-gradient(90deg, #e17ed4 0%, #e17ed4 16.98%, #fe9e9e 31.04%, #b62fc8 46.15%, #b62fc8 100%);
 }
+  #aCenter{
+    margin-top: 100px;
+  }
 .fs_12 {
   font-size: 12px;
   margin: 0;
@@ -271,6 +300,10 @@ img {
   border-radius: 0px;
 }
 
+#playlistLog{
+  border-radius: 0px 0px 20px 20px;
+}
+
 .tracksList :first-child {
   border-radius: 20px 20px 0 0;
 }
@@ -285,4 +318,110 @@ img {
 }
 .clickable{
   cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .fs_12 {
+  font-size: 6px;
+  margin: 0;
+  }
+  .fs_16 {
+    font-size: 12px;
+    margin: 0;
+  }
+
+  .fs_20 {
+    font-size: 20px;
+    margin: 0;
+  }
+
+  .fs_24 {
+    font-size: 22px;
+    margin: 0;
+  }
+
+  .fs_32 {
+    font-size: 20px;
+    margin: 0;
+  }
+
+  .fs_48 {
+    font-size: 24px;
+    margin: 0;
+  }
+  #time{
+    display: none;
+  }
+
+  #imageMusicBar{
+    display: none;  
+  }
+
+  .aCenter:nth-child(n) {
+    position: absolute;
+    top:150px;
+    transform: scale(1.2);
+    width: 300px;
+    height: 100px;
+  }
+  #steps{
+    display: none;
+  }
+
+  .w150 {
+    width: 100px;
+  }
+  
+  .w300 {
+    width: 200px;
+  }
+  
+  .w400 {
+    width: 300px;
+  }
+  
+  .h100 {
+    height: 100px;
+  }
+  
+  .h150 {
+    height: 100px;
+  }
+  
+  .h200 {
+    height: 150px;
+  }
+  
+  .h250 {
+    height: 200px;
+  }
+  
+  .h300 {
+    height: 150px;
+  }
+  
+  .h350 {
+    height: 100px;
+  }
+  
+  .h400 {
+    height: 150px;
+  }
+
+  .container{
+    padding: 0px;
+  }
+  #small{
+    transform: scale(0.8);
+  }
+
+  #aCenter{
+  width: 300px;
+  height: 300px;
+  position:absolute;
+  top: 200px;
+  transform: translate(-50%, -50%);
+  transform: scale(1.2);
+  }
+
 }

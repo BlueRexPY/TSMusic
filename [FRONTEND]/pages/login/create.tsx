@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Button, Form, Input, message, Spin } from "antd";
 import { UseInput } from "@/hooks/useInput";
-import Head from "next/head";
 import axios from "axios";
 import { DEFUALT_API } from "@/utils//apiLinks";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import Layout from '@/components/layout/Layout';
 
 const CreateUser = () => {
   const router = useRouter();
@@ -44,12 +44,8 @@ const CreateUser = () => {
   };
   if(!loading){
     return (
-      <>
-        <Head>
-          <title>{`TSMusic - Login`}</title>
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-        </Head>
-        <div className="h300 w400 paper col b20 big">
+      <Layout title="Login" >
+        <div className="h300 w400 paper col b20 big" id="aCenter">
           <Form
             className="h250 w400 col jc_sb"
             name="basic"
@@ -107,7 +103,7 @@ const CreateUser = () => {
             </Form.Item>
           </Form>
         </div>
-      </>
+      </Layout>
     );
   }else{
     return(

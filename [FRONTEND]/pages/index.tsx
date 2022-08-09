@@ -5,8 +5,10 @@ import TopTrack from "@/components/layout/listItems/TopTrack";
 const HomePage = () => {
   return (
     <Layout title="Main">
-      <BigLogo />
-      <TopTrack />
+      <div id="small">
+        <BigLogo />
+        <TopTrack />
+      </div>
     </Layout>
   );
 };

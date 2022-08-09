@@ -1,4 +1,4 @@
-export const DEFUALT_API = "https://prod-tsmusic.herokuapp.com/"
+export const DEFUALT_API = "http://localhost:5000/"
 //http://localhost:5000/
 //https://prod-tsmusic.herokuapp.com/
 

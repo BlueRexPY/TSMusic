@@ -45,9 +45,7 @@ const Layout = (props: Props) => {
       return (
         <>
           <ProfileMenu />
-          <Navigation />
-          <MusicBar />
-          <div className="col">{props.children}</div>
+          <div className="col oh">{props.children}</div>
         </>
       );
     } else {
@@ -56,7 +54,7 @@ const Layout = (props: Props) => {
   };
 
   return (
-    <div>
+    <div className="layout">
       <Head>
         <title>{`TSMusic - ${title}`}</title>
         <meta name="description" content={description} />
@@ -64,7 +62,6 @@ const Layout = (props: Props) => {
         <meta name="keywords" content={`Music, Tracks, Artists, ${keywords}`} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-
       {getContent()}
     </div>
   );

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Button, Checkbox, Form, Input, message, Spin } from "antd";
 import { UseInput } from "@/hooks/useInput";
-import Head from "next/head";
 import axios from "axios";
 import { DEFUALT_API } from "@/utils//apiLinks";
 import { useRouter } from "next/router";
 import { useStores } from "@/hooks/useStore";
 import Link from "next/link";
+import Layout from '../../app/components/layout/Layout';
 
 const login = () => {
   const router = useRouter();
@@ -57,12 +57,8 @@ const login = () => {
   };
   if(!loading){
     return (
-      <>
-        <Head>
-          <title>{`TSMusic - Login`}</title>
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-        </Head>
-        <div className="h300 w400 paper col b20 big">
+      <Layout title="Login">
+        <div className="h300 w400 paper col b20 big" id="aCenter">
           <Form
             className="h250 w400 col jc_sb"
             name="basic"
@@ -107,7 +103,7 @@ const login = () => {
             </Form.Item>
           </Form>
         </div>
-      </>
+      </Layout>
     );
   }else{
     return(

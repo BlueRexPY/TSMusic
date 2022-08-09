@@ -1,10 +1,9 @@
 .nav_bar {
-    position: absolute;
+    position: fixed ;
     width: 70px;
     height: 100vh;
     left: 0px;
     top: 0px;
-    padding-bottom: 10%;
 
     background: rgba(30, 31, 40, 0.5);
     border-radius: 0px 40px 40px 0px;
@@ -17,4 +16,12 @@
     justify-content: space-around;
     align-content: center;
     align-items: center;
+}
+@media (max-width: 600px) {
+    .nav_bar:nth-child(n) {
+        transform: scale(0.5);
+        left: -20px;
+        top: -32vh;
+        height: 150vh;
+    }
 }
