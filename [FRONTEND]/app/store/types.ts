@@ -6,3 +6,12 @@ export interface ITrack {
     picture: string;
     audio: string;
 }
+
+export interface IAlbume {
+    _id: string;
+    name: string;
+    author: string;
+    listens: number;
+    picture: string;
+    tracks:string[];
+}

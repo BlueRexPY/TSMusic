@@ -4,16 +4,33 @@ import { DEFUALT_API } from "@/utils//apiLinks";
 import TrackItem from "@/components/layout/listItems/TrackItem";
 import { GetServerSideProps } from "next";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import AuthorItem from "@/components/layout/listItems/AuthorItem";
 import { ITrack } from "@/store/types";
+import { useStores } from "@/hooks/useStore";
 
 type author = {
-  author: ITrack[];
+  author: string;
 };
 
 const AuthorPage = observer((author: author) => {
-  const [tracksList, setTracksList] = useState<ITrack[]>(author.author);
+  const { TracksStore } = useStores();
+  const [tracksList, setTracksList] = useState<ITrack[]>([TracksStore.tracksList[0]]);
+
+  useEffect(() => {
+    const fetch = async () => {
+      const res = await axios.get<ITrack[]>(
+        DEFUALT_API + "tracks/search/artist?query=" + author
+      );
+      setTracksList(res.data)
+    }
+
+    fetch();
+    return () => {
+      fetch;
+    };
+  }, [])
+  
 
   return (
     <Layout title={tracksList[0].artist} keywords={tracksList[0].artist}>
@@ -45,12 +62,10 @@ const AuthorPage = observer((author: author) => {
 export default AuthorPage;
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const response = await axios.get(
-    DEFUALT_API + "tracks/search/artist?query=" + params?.author
-  );
+  const author = params?.author
   return {
     props: {
-      author: response.data,
+      author: author
     },
   };
 };

@@ -26,8 +26,6 @@ type user = {
 
 const Profile = observer((user: user) => {
   const [tracksList, setTracksList] = useState<ITrack[]>([]);
-  const [userTracksList, setUsertracksList] = useState<ITrack[]>([]);
-
   const { AuthStore } = useStores();
   const [loading, setLoading] = useState(true);
 

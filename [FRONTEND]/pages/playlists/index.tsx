@@ -45,7 +45,7 @@ const Playlists = observer(() => {
   }, [])
 
   if(!loading){
-    return <Layout title="Playlist">
+    return <Layout title="playlist">
     <div className={styles.palylistList}>
           <Input
             placeholder="Search"
@@ -53,7 +53,10 @@ const Playlists = observer(() => {
             value={searchName}
             id="searchBar"
           />
-          {playlistList.map((item,index) => {
+          {(searchName != "" && filterPlaylistList.length != 0
+            ? filterPlaylistList
+            : playlistList
+          )?.map((item,index) => {
             return (
               <PlaylistCardItem
               count={item.tracks.length}

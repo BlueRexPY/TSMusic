@@ -6,25 +6,34 @@ import { DEFUALT_API } from "@/utils//apiLinks";
 import { observer } from "mobx-react-lite";
 import TrackItem from "@/components/layout/listItems/TrackItem";
 import { Spin } from "antd";
-import { ITrack } from "@/store/types";
+import { IAlbume, ITrack } from "@/store/types";
 import PlaylistCard from "@/components/layout/playlist/PlaylistCard";
+import { useStores } from "@/hooks/useStore";
 
 type album = {
   name: string;
-  author: string;
-  tracks: string[];
-  listens: number;
-  image: string;
 };
 
-const Playlist = observer((album: album) => {
+const Playlist = observer((prpsAlbum: album) => {
   const [tracksList, setTracksList] = useState<ITrack[]>([]);
+  const { PlaylistStore } = useStores();
+  const [album, setAlbum] = useState<IAlbume>({
+    _id: "id",
+    name: "name",
+    author: "author",
+    listens: 0,
+    picture: "image",
+    tracks:["id"],
+  });
   const [loading, setLoading] = useState(true);
  
   useEffect(() => {
     const fetch = async () => {
+      const resalbum = await axios.get<IAlbume>(DEFUALT_API + "albums/" + prpsAlbum.name);
+      const dataAlbum:IAlbume = resalbum.data
+      setAlbum(resalbum.data)
       const newArr = await Promise.all(
-        album.tracks.map(async function (item) {
+        dataAlbum.tracks.map(async function (item) {
           const res = await axios.get(DEFUALT_API + "tracks/" + item);
           return res.data;
         })
@@ -53,7 +62,7 @@ const Playlist = observer((album: album) => {
             name={album.name}
             author={album.author}
             listens={album.listens}
-            image={album.image}
+            image={album.picture}
           />
           {tracksList?.map((item, index) => {
             return (
@@ -78,15 +87,9 @@ export default Playlist;
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const name = params?.name;
-  const response = await axios.get(DEFUALT_API + "albums/" + params?.name);
-
   return {
     props: {
-      tracks: response.data.tracks,
       name: name,
-      author: response.data.author,
-      listens: response.data.listens,
-      image: response.data.picture,
     },
   };
 };
