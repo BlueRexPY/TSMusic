@@ -10,22 +10,33 @@ import { useStores } from "@/hooks/useStore";
 import { Spin } from "antd";
 import { ITrack } from "@/store/types";
 
+
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  const name = params?.name;
+  return {
+    props: {
+      name: name,
+    },
+  };
+};
+
 type user = {
   name: string;
-  tracks: string[];
 };
 
 const Profile = observer((user: user) => {
   const [tracksList, setTracksList] = useState<ITrack[]>([]);
+  const [userTracksList, setUsertracksList] = useState<ITrack[]>([]);
+
   const { AuthStore } = useStores();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetch = async () => {
+      const userTracks = await axios.get<ITrack[]>(DEFUALT_API + "users/" + user.name);
       const newArr = await Promise.all(
-        user.tracks.map(async function (item) {
+        userTracks.data.map(async function (item) {
           const res = await axios.get(DEFUALT_API + "tracks/" + item);
-          console.log(res.data)
           return res.data;
         })
       );
@@ -70,15 +81,4 @@ const Profile = observer((user: user) => {
   }
 });
 export default Profile;
-
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const name = params?.name;
-  const response = await axios.get(DEFUALT_API + "users/" + params?.name);
-  return {
-    props: {
-      tracks: response.data,
-      name: name,
-    },
-  };
-};
 
