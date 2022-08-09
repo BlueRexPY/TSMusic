@@ -25,6 +25,7 @@ const Profile = observer((user: user) => {
       const newArr = await Promise.all(
         user.tracks.map(async function (item) {
           const res = await axios.get(DEFUALT_API + "tracks/" + item);
+          console.log(res.data)
           return res.data;
         })
       );
@@ -73,7 +74,6 @@ export default Profile;
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const name = params?.name;
   const response = await axios.get(DEFUALT_API + "users/" + params?.name);
-
   return {
     props: {
       tracks: response.data,
@@ -81,3 +81,4 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     },
   };
 };
+
