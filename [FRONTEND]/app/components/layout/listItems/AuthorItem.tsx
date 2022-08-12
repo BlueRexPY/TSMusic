@@ -19,7 +19,7 @@ const AuthorItem = (props: Props) => {
       <Image
         id="authorLogo"
         loader={myLoader}
-        src={DEFUALT_API + picture}
+        src={picture}
         width={150}
         height={150}
         alt={artist}

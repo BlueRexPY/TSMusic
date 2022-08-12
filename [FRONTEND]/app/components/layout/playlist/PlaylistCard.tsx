@@ -15,14 +15,14 @@ const PlaylistCard = (props: Props) => {
   const router = useRouter();
   const { count, name, listens, author, image } = props;
   const myLoader = ({ src }: any) => {
-    return DEFUALT_API + image;
+    return image;
   };
   return (
     <div className={styles.playlistCard}>
       <Image
         id="authorLogo"
         loader={myLoader}
-        src={DEFUALT_API + image}
+        src={image}
         width={150}
         height={150}
         alt={name}

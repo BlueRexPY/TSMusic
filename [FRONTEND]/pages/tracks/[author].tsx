@@ -38,7 +38,7 @@ const AuthorPage = observer((author: author) => {
         <AuthorItem
           count={tracksList.length}
           artist={tracksList[0].artist}
-          picture={DEFUALT_API + tracksList[0].picture}
+          picture={tracksList[0].picture}
         />
         {tracksList?.map((item, index) => {
           return (
@@ -46,9 +46,9 @@ const AuthorPage = observer((author: author) => {
               key={index}
               index={index + 1}
               name={item.name}
-              audio={DEFUALT_API + item.audio}
+              audio={item.audio}
               artist={item.artist}
-              picture={DEFUALT_API + item.picture}
+              picture={item.picture}
               id={item._id}
               listens={item.listens}
             />

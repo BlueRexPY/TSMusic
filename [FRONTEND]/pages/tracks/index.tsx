@@ -68,9 +68,9 @@ const TracksPage = observer(() => {
                 key={index}
                 index={index + 1}
                 name={item.name}
-                audio={DEFUALT_API + item.audio}
+                audio={item.audio}
                 artist={item.artist}
-                picture={DEFUALT_API + item.picture}
+                picture={item.picture}
                 listens={item.listens}
                 id={item._id}
               />

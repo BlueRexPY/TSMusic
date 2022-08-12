@@ -37,8 +37,8 @@ export const useNextTrack = ({ plus = true, currentIndex, trackList }: Props) =>
         name: trackList[nextItem].name,
         artist: trackList[nextItem].artist,
         listens: trackList[nextItem].listens,
-        picture: DEFUALT_API + trackList[nextItem].picture,
-        audio: DEFUALT_API + trackList[nextItem].audio,
+        picture: trackList[nextItem].picture,
+        audio: trackList[nextItem].audio,
     });
     useListen(trackList[nextItem]._id)
 };

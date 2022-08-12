@@ -62,7 +62,7 @@ const Playlists = observer(() => {
               count={item.tracks.length}
               key={index}
               name={item.name}
-              picture={DEFUALT_API + item.picture}
+              picture={item.picture}
               id={item._id}
             />
             );

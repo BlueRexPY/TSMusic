@@ -64,9 +64,9 @@ const Profile = observer((user: user) => {
                 key={index}
                 index={index + 1}
                 name={item?.name}
-                audio={DEFUALT_API + item?.audio}
+                audio={item?.audio}
                 artist={item?.artist}
-                picture={DEFUALT_API + item?.picture}
+                picture={item?.picture}
                 id={item?._id}
                 listens={item?.listens}
                 hardLike={AuthStore.AuthSettings.name == user.name}

@@ -122,7 +122,7 @@ const MusicBar = observer(() => {
         <div id="imageMusicBar">
           <Image
             loader={myLoader}
-            src={DEFUALT_API + picture}
+            src={picture}
             width={80}
             height={80}
             alt="tsmusic"

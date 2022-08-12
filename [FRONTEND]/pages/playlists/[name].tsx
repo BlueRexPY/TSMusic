@@ -70,9 +70,9 @@ const Playlist = observer((prpsAlbum: album) => {
                 key={index}
                 index={index + 1}
                 name={item?.name}
-                audio={DEFUALT_API + item?.audio}
+                audio={item?.audio}
                 artist={item?.artist}
-                picture={DEFUALT_API + item?.picture}
+                picture={item?.picture}
                 id={item?._id}
                 listens={item?.listens}
               />

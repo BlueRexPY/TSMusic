@@ -25,7 +25,7 @@ const TopTrack = () => {
   const { _id, name, artist, picture, audio, listens }: ITrack = track[0];
 
   const myLoader = ({ src }: any) => {
-    return DEFUALT_API + picture;
+    return picture;
   };
 
   const handleClick = () => {
@@ -36,8 +36,8 @@ const TopTrack = () => {
       name: name,
       artist: artist,
       listens: listens,
-      picture: DEFUALT_API + picture,
-      audio: DEFUALT_API + audio,
+      picture: picture,
+      audio: audio,
     });
     useListen(_id);
   };
@@ -49,7 +49,7 @@ const TopTrack = () => {
       <div className={styles.topTrackCard}>
         <Image
           loader={myLoader}
-          src={DEFUALT_API + picture}
+          src={picture}
           width={150}
           height={150}
           alt={name}
