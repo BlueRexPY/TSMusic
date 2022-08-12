@@ -1,5 +1,5 @@
 import StepWrapper from "@/components/layout/TrackCreator/StepWrapper";
-import { Button, Input } from "antd";
+import { Button, Input, Spin } from "antd";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import FileUploader from "@/components/layout/TrackCreator/FileUploader";
@@ -12,11 +12,10 @@ import Link from "next/link";
 
 const Create = () => {
   const { AuthStore } = useStores();
-
   const [currentStep, setCurrentStep] = useState(0);
-
   const [audio, setAudio] = useState([{ originFileObj: "" }]);
   const [photo, setPhoto] = useState([{ originFileObj: "" }]);
+  const [loading, setLoading] = useState(false);
   const name = UseInput("");
   const artist = UseInput("");
   const router = useRouter();
@@ -25,6 +24,7 @@ const Create = () => {
     if (currentStep !== 2) {
       setCurrentStep((prev) => prev + 1);
     } else {
+      setLoading(true)
       const formData = new FormData();
       formData.append("name", name.value);
       formData.append("artist", artist.value);
@@ -42,54 +42,64 @@ const Create = () => {
   };
 
   if (AuthStore.AuthSettings.roles.includes("ADMIN")) {
-    return (
-      <Layout title="create">
-        <StepWrapper
-          currentStep={currentStep}
-          steps={["Info", "Audio", "Photo"]}
-        >
-          {currentStep === 0 && (
-            <div className="col w300 h100 jc_sa big">
-              <Input placeholder="Title" {...name} />
-              <Input placeholder="Author" {...artist} />
+    if (!loading) {
+      return (
+        <Layout title="create">
+          <StepWrapper
+            currentStep={currentStep}
+            steps={["Info", "Audio", "Photo"]}
+          >
+            {currentStep === 0 && (
+              <div className="col w300 h100 jc_sa big">
+                <Input placeholder="Title" {...name} />
+                <Input placeholder="Author" {...artist} />
+              </div>
+            )}
+            {currentStep === 1 && (
+              <>
+                <p className="fs_20 gray">Audio</p>
+                <FileUploader
+                  maxCount={1}
+                  setFile={setAudio}
+                  acceptFile={"audio/*"}
+                />
+              </>
+            )}
+            {currentStep === 2 && (
+              <>
+                <p className="fs_20 gray">Photo</p>
+                <FileUploader maxCount={1} setFile={setPhoto} />
+              </>
+            )}
+            <div className="row jc_sa w150 big">
+              <Button disabled={currentStep === 0} onClick={toBack}>
+                Back
+              </Button>
+              <Button
+                onClick={toNext}
+                disabled={
+                  (currentStep === 0 && name.value == "") ||
+                  (currentStep === 0 && artist.value == "") ||
+                  (currentStep === 1 && audio == [{ originFileObj: "" }]) ||
+                  (currentStep === 2 && photo == [{ originFileObj: "" }])
+                }
+                type="primary"
+              >
+                Next
+              </Button>
             </div>
-          )}
-          {currentStep === 1 && (
-            <>
-              <p className="fs_20 gray">Audio</p>
-              <FileUploader
-                maxCount={1}
-                setFile={setAudio}
-                acceptFile={"audio/*"}
-              />
-            </>
-          )}
-          {currentStep === 2 && (
-            <>
-              <p className="fs_20 gray">Photo</p>
-              <FileUploader maxCount={1} setFile={setPhoto} />
-            </>
-          )}
-          <div className="row jc_sa w150 big">
-            <Button disabled={currentStep === 0} onClick={toBack}>
-              Back
-            </Button>
-            <Button
-              onClick={toNext}
-              disabled={
-                (currentStep === 0 && name.value == "") ||
-                (currentStep === 0 && artist.value == "") ||
-                (currentStep === 1 && audio == [{ originFileObj: "" }]) ||
-                (currentStep === 2 && photo == [{ originFileObj: "" }])
-              }
-              type="primary"
-            >
-              Next
-            </Button>
+          </StepWrapper>
+        </Layout>
+      );
+    } else if (loading) {
+      return (
+        <Layout title="create">
+          <div className="w300 h300 col big">
+            <Spin />
           </div>
-        </StepWrapper>
-      </Layout>
-    );
+        </Layout>
+      );
+    }
   } else {
     return (
       <Layout title="create">

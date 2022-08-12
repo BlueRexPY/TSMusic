@@ -18,22 +18,18 @@ type Props = {
 const PlaylistCardItem = observer((props: Props) => {
   const router = useRouter();
   const { name, picture, count, id} = props;
-  const myLoader = ({ src }: any) => {
-    return picture;
-  };
 
   const handleClick = ()=>{
     axios.post(DEFUALT_API + "albums/listen/" + id)
     router.push("/playlists/" + name)
   }
 
-
   return(
     <div className={styles.PlaylistCard} onClick={()=>handleClick()}>
         <Image
             id="playlistLogo"
-            loader={myLoader}
             src={picture}
+            loader={() => picture}
             width={250}
             height={250}
             alt={name}

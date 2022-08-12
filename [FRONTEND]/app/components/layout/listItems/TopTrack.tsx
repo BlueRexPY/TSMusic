@@ -24,10 +24,6 @@ const TopTrack = () => {
 
   const { _id, name, artist, picture, audio, listens }: ITrack = track[0];
 
-  const myLoader = ({ src }: any) => {
-    return picture;
-  };
-
   const handleClick = () => {
     PlayerStore.setActive();
     PlayerStore.setPlay();
@@ -48,8 +44,8 @@ const TopTrack = () => {
     return (
       <div className={styles.topTrackCard}>
         <Image
-          loader={myLoader}
           src={picture}
+          loader={() => picture}
           width={150}
           height={150}
           alt={name}

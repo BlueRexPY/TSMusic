@@ -11,15 +11,12 @@ type Props = {
 const AuthorItem = (props: Props) => {
   const { count, artist, picture } = props;
 
-  const myLoader = ({ src }: any) => {
-    return picture;
-  };
   return (
     <div className={styles.authorCard}>
       <Image
         id="authorLogo"
-        loader={myLoader}
         src={picture}
+        loader={() => picture}
         width={150}
         height={150}
         alt={artist}

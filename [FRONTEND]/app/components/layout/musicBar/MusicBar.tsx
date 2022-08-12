@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/image";Image
 import styles from "./MusicBar.module.scss";
 import React, { useEffect } from "react";
 import NextIcon from "@/icons/NextIcon";
@@ -99,10 +99,6 @@ const MusicBar = observer(() => {
     PlayerStore.setCurrentTime(parseInt(value));
   };
 
-  const myLoader = ({ src }: any) => {
-    return picture;
-  };
-
   return (
     <div
       className={styles.music_bar}
@@ -121,8 +117,8 @@ const MusicBar = observer(() => {
       <div className={styles.music_side}>
         <div id="imageMusicBar">
           <Image
-            loader={myLoader}
             src={picture}
+            loader={() => picture}
             width={80}
             height={80}
             alt="tsmusic"
