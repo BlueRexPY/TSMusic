@@ -1,7 +1,9 @@
 ![Banner](https://cdn.discordapp.com/attachments/736633764930912257/991600460685377607/unknown.png)
 
 # TSMusic - https://ts-music.vercel.app/
-
+<br>
+**For full functionality use Admin:Admin**
+<br>
 ### Description 
 FronEnd- created with:<br>
     <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB"> 
