@@ -10,6 +10,7 @@ import PlaylistCardItem from "@/components/layout/listItems/PlaylistCarditem";
 import { observer } from 'mobx-react-lite';
 
 const Playlists = observer(() => {
+  const { NavStore } = useStores();
   const { AuthStore } = useStores();
   const router = useRouter();
   const [searchName, setSearchName] = useState("");
@@ -39,6 +40,7 @@ const Playlists = observer(() => {
     }
   };
   useEffect(() => {
+    NavStore.setPath("PLAYLIST")
     PlaylistStore.fetchPlaylist();
     console.log('useeffect work!')
     setLoading(false);

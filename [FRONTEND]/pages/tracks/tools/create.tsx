@@ -19,6 +19,8 @@ const Create = () => {
   const name = UseInput("");
   const artist = UseInput("");
   const router = useRouter();
+  const { NavStore } = useStores();
+  NavStore.setPath("TRACKS")
 
   const toNext = () => {
     if (currentStep !== 2) {

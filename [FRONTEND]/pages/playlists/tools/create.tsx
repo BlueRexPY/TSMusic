@@ -12,6 +12,8 @@ import Link from "next/link";
 import { Option } from "antd/lib/mentions";
 
 const Create = () => {
+  const { NavStore } = useStores();
+  NavStore.setPath("PLAYLIST")
   const { AuthStore } = useStores();
   const [currentStep, setCurrentStep] = useState(0);
   const [photo, setPhoto] = useState([{ originFileObj: "" }]);

@@ -1,15 +1,16 @@
 import styles from "./Navigation.module.scss";
-import React, { memo } from "react";
+import React from "react";
 import LogoIcon from "../icons/LogoIcon";
-import HomeIcon from "../icons/HomeIcon";
 import MusicIcon from "../icons/MusicIcon";
 import AlbumIcon from "../icons/AlbumIcon";
 import LikeIcon from "../icons/LikeIcon";
 import { useRouter } from "next/router";
-import AuthStore from "@/store/AuthStore";
+import { useStores } from "@/hooks/useStore";
+import { observer } from 'mobx-react-lite';
 
-const Navigation = () => {
+const Navigation = observer(() => {
   const router = useRouter();
+  const { AuthStore } = useStores();
   const { auth, name } = AuthStore.AuthSettings;
   return (
     <div className={styles.nav_bar}>
@@ -29,6 +30,6 @@ const Navigation = () => {
       </div>
     </div>
   );
-};
+})
 
-export default memo(Navigation);
+export default Navigation;

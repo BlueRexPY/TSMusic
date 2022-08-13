@@ -1,6 +1,6 @@
 import Image from "next/image";Image
 import styles from "./MusicBar.module.scss";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import NextIcon from "@/icons/NextIcon";
 import StopIcon from "@/icons/StopIcon";
 import BackIcon from "@/icons/BackIcon";
@@ -22,7 +22,18 @@ const MusicBar = observer(() => {
   const { volume, duration, currentTime, pause, active } =
     PlayerStore.PlayerSettings;
   const { name, artist, picture } = PlayerStore.PlayerSettings.track;
+  const [mute, setMute] = useState(false)
 
+
+  const changeMute = () =>{
+    setMute(!mute)
+    if(!mute){
+      audio.volume = 0
+    }else{
+      audio.volume = volume / 100;
+    }
+
+  }
   useEffect(() => {
     audio = new Audio(PlayerStore.PlayerSettings.track.audio);
     audio.currentTime = currentTime;
@@ -173,7 +184,10 @@ const MusicBar = observer(() => {
       </div>
 
       <div className={styles.volume}>
-        <VolumeIcon />
+        <div onClick={()=>changeMute()}>
+          <VolumeIcon volume={mute?0:volume}/>
+        </div>
+        
         <input
           type="range"
           id="volume_line"

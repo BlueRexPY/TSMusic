@@ -16,6 +16,8 @@ type author = {
 const AuthorPage = observer((author: author) => {
   const { TracksStore } = useStores();
   const [tracksList, setTracksList] = useState<ITrack[]>([TracksStore.tracksList[0]]);
+  const { NavStore } = useStores();
+  NavStore.setPath("TRACKS")
 
   useEffect(() => {
     const fetch = async () => {

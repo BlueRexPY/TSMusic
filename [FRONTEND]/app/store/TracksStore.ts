@@ -1,6 +1,7 @@
 import { makeAutoObservable } from "mobx";
 import axios from 'axios';
 import { DEFAULT_API } from '../utils/apiLinks';
+import { ITrack } from "./types";
 
 class TracksStore {
     tracksList = [
@@ -24,6 +25,10 @@ class TracksStore {
         } catch (error) {
             console.log(error)
         }
+    }
+
+    setTracks(newTracks:ITrack[]){
+        this.tracksList = newTracks
     }
 
 }

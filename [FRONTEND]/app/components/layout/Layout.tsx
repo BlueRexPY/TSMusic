@@ -13,6 +13,7 @@ type Props = {
   title?: string;
   description?: string;
   keywords?: string;
+  path?: string;
 };
 
 const Layout = (props: Props) => {
@@ -20,6 +21,7 @@ const Layout = (props: Props) => {
     title = "TSMusic - ",
     description = "Spotify clone online application",
     keywords = "Music, Tracks, Artists",
+    path = "MAIN"
   } = props;
   const { AuthStore } = useStores();
   const [loading, setLoading] = useState(true);

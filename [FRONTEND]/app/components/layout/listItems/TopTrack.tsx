@@ -25,6 +25,7 @@ const TopTrack = () => {
   const { _id, name, artist, picture, audio, listens }: ITrack = track[0];
 
   const handleClick = () => {
+    TracksStore.fetchTracks()
     PlayerStore.setActive();
     PlayerStore.setPlay();
     PlayerStore.setTrack({

@@ -25,11 +25,20 @@ type user = {
 };
 
 const Profile = observer((user: user) => {
+  const { NavStore } = useStores();
+  
   const [tracksList, setTracksList] = useState<ITrack[]>([]);
   const { AuthStore } = useStores();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+
+    if(AuthStore.AuthSettings.name === user.name){
+      NavStore.setPath("FAV")
+    }else{
+      NavStore.setPath("MAIN")
+    }
+
     const fetch = async () => {
       const userTracks = await axios.get<ITrack[]>(DEFAULT_API + "users/" + user.name);
       const newArr = await Promise.all(

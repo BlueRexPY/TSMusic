@@ -15,8 +15,9 @@ type album = {
 };
 
 const Playlist = observer((prpsAlbum: album) => {
+  const { NavStore } = useStores();
   const [tracksList, setTracksList] = useState<ITrack[]>([]);
-  const { PlaylistStore } = useStores();
+  const { TracksStore } = useStores();
   const [album, setAlbum] = useState<IAlbume>({
     _id: "id",
     name: "name",
@@ -28,6 +29,7 @@ const Playlist = observer((prpsAlbum: album) => {
   const [loading, setLoading] = useState(true);
  
   useEffect(() => {
+    NavStore.setPath("PLAYLIST")
     const fetch = async () => {
       const resalbum = await axios.get<IAlbume>(DEFAULT_API + "albums/" + prpsAlbum.name);
       const dataAlbum:IAlbume = resalbum.data
@@ -40,6 +42,7 @@ const Playlist = observer((prpsAlbum: album) => {
       );
       setLoading(false);
       setTracksList(newArr);
+      TracksStore.setTracks(newArr)
     };
     fetch();
     return () => {

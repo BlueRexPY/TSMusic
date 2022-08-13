@@ -17,6 +17,8 @@ const TracksPage = observer(() => {
   const { tracksList } = TracksStore;
   const [filterTracksList, setFilterTracksList] = useState([]);
   const { AuthStore } = useStores();
+  const { NavStore } = useStores();
+  NavStore.setPath("TRACKS")
 
   const handleChange = (text: string) => {
     setSearchName(text);

@@ -14,6 +14,8 @@ const login = () => {
   const password = UseInput("");
   const [rememberMe, setRememberMe] = useState(true);
   const [loading, setLoading] = useState(false);
+  const { NavStore } = useStores();
+  NavStore.setPath("MAIN")
 
   const { AuthStore } = useStores();
 

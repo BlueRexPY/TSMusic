@@ -6,8 +6,11 @@ import { DEFAULT_API } from "@/utils//apiLinks";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Layout from '@/components/layout/Layout';
+import { useStores } from "@/hooks/useStore";
 
 const CreateUser = () => {
+  const { NavStore } = useStores();
+  NavStore.setPath("MAIN")
   const router = useRouter();
   const name = UseInput("");
   const password = UseInput("");
