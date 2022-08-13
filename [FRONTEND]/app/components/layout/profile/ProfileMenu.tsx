@@ -42,32 +42,32 @@ const ProfileMenu = () => {
         </p>
       </div>
     );
-  } else {
-    return (
-      <div
-        className={styles.container}
-        onClick={() =>
-          router.push(
-            AuthStore.AuthSettings.auth
-              ? "/profile/" + AuthStore.AuthSettings.name
-              : "/login/"
-          )
-        }
-      >
-        <Image
-          className={styles.logo}
-          src={userLogo}
-          width={40}
-          height={40}
-          alt="User"
-          draggable={false}
-        />
-        <p className="fs_16 m10">
-          {AuthStore.AuthSettings.auth ? AuthStore.AuthSettings.name : "Login"}
-        </p>
-      </div>
-    );
   }
+  return (
+    <div
+      className={styles.container}
+      onClick={() =>
+        router.push(
+          AuthStore.AuthSettings.auth
+            ? "/profile/" + AuthStore.AuthSettings.name
+            : "/login/"
+        )
+      }
+    >
+      <Image
+        className={styles.logo}
+        src={userLogo}
+        width={40}
+        height={40}
+        alt="User"
+        draggable={false}
+      />
+      <p className="fs_16 m10">
+        {AuthStore.AuthSettings.auth ? AuthStore.AuthSettings.name : "Login"}
+      </p>
+    </div>
+  );
+  
 };
 
 export default ProfileMenu;

@@ -3,7 +3,7 @@ import React from "react";
 import styles from "./PlaylistCard.module.scss";
 import logoImg from "@/assets/img/playlistLogo.svg";
 import { useRouter } from "next/router";
-import { DEFUALT_API } from "@/utils//apiLinks";
+import { DEFAULT_API } from "@/utils//apiLinks";
 type Props = {
   count: number;
   name: string;
@@ -11,9 +11,8 @@ type Props = {
   author: string;
   image: string;
 };
-const PlaylistCard = (props: Props) => {
+const PlaylistCard = ({ count, name, listens, author, image }: Props) => {
   const router = useRouter();
-  const { count, name, listens, author, image } = props;
   return (
     <div className={styles.playlistCard}>
       <Image

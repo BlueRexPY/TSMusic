@@ -4,7 +4,7 @@ import MusicBar from "@/layout/musicBar/MusicBar";
 import Navigation from "@/layout/navigation/Navigation";
 import ProfileMenu from "./profile/ProfileMenu";
 import axios from "axios";
-import { DEFUALT_API } from "@/utils//apiLinks";
+import { DEFAULT_API } from "@/utils//apiLinks";
 import { useStores } from "@/hooks/useStore";
 import { Spin } from "antd";
 
@@ -27,7 +27,7 @@ const Layout = (props: Props) => {
   useEffect(() => {
     if (localStorage.getItem("userName")) {
       axios
-        .post(DEFUALT_API + "users/login/", {
+        .post(DEFAULT_API + "users/login/", {
           name: localStorage.getItem("userName"),
           password: localStorage.getItem("userPassword"),
         })
@@ -48,9 +48,10 @@ const Layout = (props: Props) => {
           <div className="col oh">{props.children}</div>
         </>
       );
-    } else {
-      <Spin />;
-    }
+    } 
+    return (
+      <Spin />
+    )
   };
 
   return (

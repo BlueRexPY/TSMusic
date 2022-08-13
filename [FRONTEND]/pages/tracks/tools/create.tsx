@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import FileUploader from "@/components/layout/TrackCreator/FileUploader";
 import { UseInput } from "@/hooks/useInput";
 import axios from "axios";
-import { DEFUALT_API } from "@/utils//apiLinks";
+import { DEFAULT_API } from "@/utils//apiLinks";
 import Layout from "@/components/layout/Layout";
 import { useStores } from "@/hooks/useStore";
 import Link from "next/link";
@@ -31,7 +31,7 @@ const Create = () => {
       formData.append("picture", photo[0].originFileObj);
       formData.append("audio", audio[0].originFileObj);
       axios
-        .post(DEFUALT_API + "tracks", formData)
+        .post(DEFAULT_API + "tracks", formData)
         .then((resp) => router.push("/tracks"))
         .catch((e) => console.log(e));
     }
@@ -91,7 +91,8 @@ const Create = () => {
           </StepWrapper>
         </Layout>
       );
-    } else if (loading) {
+    }
+    if (loading) {
       return (
         <Layout title="create">
           <div className="w300 h300 col big">
@@ -100,20 +101,19 @@ const Create = () => {
         </Layout>
       );
     }
-  } else {
-    return (
-      <Layout title="create">
-        <div className="w300 h300 col big">
-          <Link href={"/"}>
-            <a>
-              <p className="gray">
-                you do not have access to this page, go back
-              </p>
-            </a>
-          </Link>
-        </div>
-      </Layout>
-    );
-  }
+  } 
+  return (
+    <Layout title="create">
+      <div className="w300 h300 col big">
+        <Link href={"/"}>
+          <a>
+            <p className="gray">
+              you do not have access to this page, go back
+            </p>
+          </a>
+        </Link>
+      </div>
+    </Layout>
+  );
 };
 export default Create;

@@ -1,9 +1,6 @@
 import PlayerStore from '@/store/PlayerStore';
 import { ITrack } from '@/store/types';
 import { useListen } from '@/hooks/useListen';
-import { DEFUALT_API } from '@/utils//apiLinks';
-import React, { useState } from 'react';
-
 
 type Props = {
     plus?: boolean;
@@ -15,14 +12,14 @@ export const useNextTrack = ({ plus = true, currentIndex, trackList }: Props) =>
     let nextItem = currentIndex
 
     if (plus) {
-        if (currentIndex == trackList.length - 1) {
+        if (currentIndex === trackList.length - 1) {
             nextItem = 0
         } else {
             nextItem = currentIndex + 1
         }
 
     } else {
-        if (currentIndex == 0) {
+        if (currentIndex === 0) {
             nextItem = trackList.length - 1
         } else {
             nextItem = currentIndex - 1

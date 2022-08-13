@@ -4,7 +4,7 @@ import { useStores } from "@/hooks/useStore";
 import { useRouter } from "next/router";
 import { Button, Input, Spin } from "antd";
 import styles from "./Playlists.module.scss";
-import { DEFUALT_API } from "@/utils//apiLinks";
+import { DEFAULT_API } from "@/utils//apiLinks";
 import axios from 'axios';
 import PlaylistCardItem from "@/components/layout/listItems/PlaylistCarditem";
 import { observer } from 'mobx-react-lite';
@@ -32,9 +32,9 @@ const Playlists = observer(() => {
 
   const handleChange = (text: string) => {
     setSearchName(text);
-    if (searchName != "") {
+    if (searchName !== "") {
       axios
-        .get(DEFUALT_API + "albums/search/name?query=" + searchName)
+        .get(DEFAULT_API + "albums/search/name?query=" + searchName)
         .then((resp) => setFilterPlaylistList(resp.data));
     }
   };

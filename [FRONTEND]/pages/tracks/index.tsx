@@ -2,7 +2,7 @@ import styles from "./Tracks.module.scss";
 import Layout from "@/components/layout/Layout";
 import TrackItem from "@/layout/listItems/TrackItem";
 import { useStores } from "@/hooks/useStore";
-import { DEFUALT_API } from "@/utils//apiLinks";
+import { DEFAULT_API } from "@/utils//apiLinks";
 import { observer } from "mobx-react-lite";
 import { useRouter } from "next/router";
 import { Button, Input, Spin } from "antd";
@@ -22,7 +22,7 @@ const TracksPage = observer(() => {
     setSearchName(text);
     if (searchName != "") {
       axios
-        .get(DEFUALT_API + "tracks/search/name?query=" + searchName)
+        .get(DEFAULT_API + "tracks/search/name?query=" + searchName)
         .then((resp) => setFilterTracksList(resp.data));
     }
   };
@@ -49,39 +49,39 @@ const TracksPage = observer(() => {
         <Spin />
       </Layout>
     );
-  } else {
-    return (
-      <Layout title="Tracks">
-        <div className={styles.trackList}>
-          <Input
-            placeholder="Search"
-            onChange={(e) => handleChange(e.target.value)}
-            value={searchName}
-            id="searchBar"
-          />
-          {(searchName != "" && filterTracksList.length != 0
-            ? filterTracksList
-            : tracksList
-          )?.map((item, index) => {
-            return (
-              <TrackItem
-                key={index}
-                index={index + 1}
-                name={item.name}
-                audio={item.audio}
-                artist={item.artist}
-                picture={item.picture}
-                listens={item.listens}
-                id={item._id}
-              />
-            );
-          })}
-        </div>
+  } 
+  return (
+    <Layout title="Tracks">
+      <div className={styles.trackList}>
+        <Input
+          placeholder="Search"
+          onChange={(e) => handleChange(e.target.value)}
+          value={searchName}
+          id="searchBar"
+        />
+        {(searchName != "" && filterTracksList.length != 0
+          ? filterTracksList
+          : tracksList
+        )?.map((item, index) => {
+          return (
+            <TrackItem
+              key={index}
+              index={index + 1}
+              name={item.name}
+              audio={item.audio}
+              artist={item.artist}
+              picture={item.picture}
+              listens={item.listens}
+              id={item._id}
+            />
+          );
+        })}
+      </div>
 
-        {adminMode()}
-      </Layout>
-    );
-  }
+      {adminMode()}
+    </Layout>
+  );
+  
 });
 
 export default TracksPage;

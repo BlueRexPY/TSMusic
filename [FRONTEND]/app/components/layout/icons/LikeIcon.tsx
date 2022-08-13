@@ -7,8 +7,7 @@ type Props = {
   height?: number;
 };
 
-const LikeIcon = observer((props: Props) => {
-  const { width = 50, height = 50 } = props;
+const LikeIcon = observer(({ width = 50, height = 50 } : Props) => {
   return (
     <>
       <Image

@@ -1,4 +1,4 @@
-import { CONFIG, DEFUALT_API } from "@/utils//apiLinks";
+import { DEFAULT_API } from "@/utils//apiLinks";
 import axios from "axios";
 import Image from "next/image";
 import React, { useLayoutEffect, useState } from "react";
@@ -17,7 +17,7 @@ const TopTrack = () => {
 
   useLayoutEffect(() => {
     axios
-      .get(DEFUALT_API + "tracks/gettop/1")
+      .get(DEFAULT_API + "tracks/gettop/1")
       .then((resp) => setTrack(resp.data))
       .then(() => setLoading(false));
   }, []);
@@ -40,35 +40,35 @@ const TopTrack = () => {
 
   if (loading) {
     return <Spin />;
-  } else {
-    return (
-      <div className={styles.topTrackCard}>
-        <Image
-          src={picture}
-          loader={() => picture}
-          width={150}
-          height={150}
-          alt={name}
-          draggable={false}
-        />
+  } 
+  return (
+    <div className={styles.topTrackCard}>
+      <Image
+        src={picture}
+        loader={() => picture}
+        width={150}
+        height={150}
+        alt={name}
+        draggable={false}
+      />
 
-        <div className={styles.topTrackInfo}>
-          <h2>{name}</h2>
-          <h3>{artist}</h3>
-          <p>listens: {listens}</p>
-        </div>
-
-        <div
-          className={styles.topTrackButton}
-          onClick={() => {
-            handleClick();
-          }}
-        >
-          <StopIcon />
-        </div>
+      <div className={styles.topTrackInfo}>
+        <h2>{name}</h2>
+        <h3>{artist}</h3>
+        <p>listens: {listens}</p>
       </div>
-    );
-  }
+
+      <div
+        className={styles.topTrackButton}
+        onClick={() => {
+          handleClick();
+        }}
+      >
+        <StopIcon />
+      </div>
+    </div>
+  );
+  
 };
 
 export default TopTrack;

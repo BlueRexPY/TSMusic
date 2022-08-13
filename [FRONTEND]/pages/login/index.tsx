@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Checkbox, Form, Input, message, Spin } from "antd";
 import { UseInput } from "@/hooks/useInput";
 import axios from "axios";
-import { DEFUALT_API } from "@/utils//apiLinks";
+import { DEFAULT_API } from "@/utils//apiLinks";
 import { useRouter } from "next/router";
 import { useStores } from "@/hooks/useStore";
 import Link from "next/link";
@@ -29,7 +29,7 @@ const login = () => {
       password.value.search(regExp) === 0
     ) {
       axios
-        .post(DEFUALT_API + "users/login/", {
+        .post(DEFAULT_API + "users/login/", {
           name: name.value,
           password: password.value,
         })

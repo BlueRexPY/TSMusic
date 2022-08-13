@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import axios from 'axios';
-import { DEFUALT_API } from '../utils/apiLinks';
+import { DEFAULT_API } from '../utils/apiLinks';
 
 class PlaylistStore {
     playlistList = [
@@ -21,7 +21,7 @@ class PlaylistStore {
     }
     async fetchPlaylist() {
         try {
-            const response = await axios.get(DEFUALT_API + 'albums')
+            const response = await axios.get(DEFAULT_API + 'albums')
             this.playlistList = response.data
         } catch (error) {
             console.log(error)

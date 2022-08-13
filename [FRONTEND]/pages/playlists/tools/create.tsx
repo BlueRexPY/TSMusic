@@ -5,7 +5,7 @@ import React, { useState, useLayoutEffect } from "react";
 import FileUploader from "@/components/layout/TrackCreator/FileUploader";
 import { UseInput } from "@/hooks/useInput";
 import axios from "axios";
-import { DEFUALT_API } from "@/utils//apiLinks";
+import { DEFAULT_API } from "@/utils//apiLinks";
 import Layout from "@/components/layout/Layout";
 import { useStores } from "@/hooks/useStore";
 import Link from "next/link";
@@ -42,7 +42,7 @@ const Create = () => {
       formData.append("picture", photo[0].originFileObj);
       formData.append("tracks", newTrackList.join(" "));
       axios
-        .post(DEFUALT_API + "albums", formData)
+        .post(DEFAULT_API + "albums", formData)
         .then((resp) => router.push("/playlists/" + name.value))
         .catch((e) => console.log(e));
     }

@@ -1,4 +1,4 @@
-import { DEFUALT_API } from "@/utils//apiLinks";
+import { DEFAULT_API } from "@/utils//apiLinks";
 import Image from "next/image";
 import React from "react";
 import styles from "./AuthorItem.module.scss";
@@ -8,8 +8,7 @@ type Props = {
   artist: string;
   picture: string;
 };
-const AuthorItem = (props: Props) => {
-  const { count, artist, picture } = props;
+const AuthorItem = ({ count, artist, picture }: Props) => {
 
   return (
     <div className={styles.authorCard}>

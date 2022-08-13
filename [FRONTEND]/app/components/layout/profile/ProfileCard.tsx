@@ -6,8 +6,7 @@ type Props = {
   count: number;
   name: string;
 };
-const ProfileCard = (props: Props) => {
-  const { count, name } = props;
+const ProfileCard = ({ count, name } : Props) => {
   return (
     <div className={styles.profileCard}>
       <Image

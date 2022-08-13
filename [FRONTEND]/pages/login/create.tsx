@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, Input, message, Spin } from "antd";
 import { UseInput } from "@/hooks/useInput";
 import axios from "axios";
-import { DEFUALT_API } from "@/utils//apiLinks";
+import { DEFAULT_API } from "@/utils//apiLinks";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Layout from '@/components/layout/Layout';
@@ -25,12 +25,12 @@ const CreateUser = () => {
       name.value.search(regExp) === 0 &&
       password.value.search(regExp) === 0
     ) {
-      axios.get(DEFUALT_API + "users/try/" + name.value).then((resp) => {
+      axios.get(DEFAULT_API + "users/try/" + name.value).then((resp) => {
         if (resp.data === true) {
           message.error("Error: a user with the same name already exists");
         } else {
           setLoading(true)
-          axios.post(DEFUALT_API + "users/", {
+          axios.post(DEFAULT_API + "users/", {
             name: name.value,
             password: password.value,
           });

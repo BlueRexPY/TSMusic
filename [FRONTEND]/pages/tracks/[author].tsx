@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import Layout from "@/components/layout/Layout";
-import { DEFUALT_API } from "@/utils//apiLinks";
+import { DEFAULT_API } from "@/utils//apiLinks";
 import TrackItem from "@/components/layout/listItems/TrackItem";
 import { GetServerSideProps } from "next";
 import axios from "axios";
@@ -20,7 +20,7 @@ const AuthorPage = observer((author: author) => {
   useEffect(() => {
     const fetch = async () => {
       const res = await axios.get<ITrack[]>(
-        DEFUALT_API + "tracks/search/artist?query=" + author
+        DEFAULT_API + "tracks/search/artist?query=" + author
       );
       setTracksList(res.data)
     }

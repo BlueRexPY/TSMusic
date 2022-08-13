@@ -3,7 +3,7 @@ import styles from "./PlaylistItem.module.scss";
 import { useStores } from "@/hooks/useStore";
 import { useRouter } from "next/router";
 import { observer } from "mobx-react-lite";
-import { DEFUALT_API } from "@/utils//apiLinks";
+import { DEFAULT_API } from "@/utils//apiLinks";
 import Image from "next/image";
 import axios from "axios";
 
@@ -15,12 +15,11 @@ type Props = {
   count: number;
 };
 
-const PlaylistCardItem = observer((props: Props) => {
+const PlaylistCardItem = observer(({ name, picture, count, id} : Props) => {
   const router = useRouter();
-  const { name, picture, count, id} = props;
 
   const handleClick = ()=>{
-    axios.post(DEFUALT_API + "albums/listen/" + id)
+    axios.post(DEFAULT_API + "albums/listen/" + id)
     router.push("/playlists/" + name)
   }
 

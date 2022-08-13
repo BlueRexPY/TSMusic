@@ -8,7 +8,6 @@ import VolumeIcon from "@/icons/VolumeIcon";
 import PlayIcon from "../icons/PlayIcon";
 import { observer } from "mobx-react-lite";
 import { useStores } from "@/hooks/useStore";
-import { DEFUALT_API } from "@/utils//apiLinks";
 import { useRouter } from "next/router";
 import { useNextTrack } from "@/hooks/useNextTrack";
 import TracksStore from "@/store/TracksStore";
@@ -16,6 +15,7 @@ import TracksStore from "@/store/TracksStore";
 let audio: HTMLAudioElement;
 
 const MusicBar = observer(() => {
+  const SECONDS_IN_MINUTE = 60;
   const router = useRouter();
   const { tracksList } = TracksStore;
   const { PlayerStore } = useStores();
@@ -138,11 +138,11 @@ const MusicBar = observer(() => {
 
       <div className="row">
         <p className="white fs_24" id="time">
-          {Math.floor(currentTime / 60)}:
-          {Math.floor(currentTime - Math.floor(currentTime / 60) * 60) < 10
+          {Math.floor(currentTime / SECONDS_IN_MINUTE)}:
+          {Math.floor(currentTime - Math.floor(currentTime / SECONDS_IN_MINUTE) * SECONDS_IN_MINUTE) < 10
             ? "0"
             : ""}
-          {Math.floor(currentTime - Math.floor(currentTime / 60) * 60)}
+          {Math.floor(currentTime - Math.floor(currentTime / SECONDS_IN_MINUTE) * SECONDS_IN_MINUTE)}
         </p>
       </div>
 
@@ -164,11 +164,11 @@ const MusicBar = observer(() => {
 
       <div className="row">
         <p className="gray fs_24" id="time">
-          {Math.floor(duration / 60)}:
-          {Math.floor(duration - Math.floor(duration / 60) * 60) < 10
+          {Math.floor(duration / SECONDS_IN_MINUTE)}:
+          {Math.floor(duration - Math.floor(duration / SECONDS_IN_MINUTE) * SECONDS_IN_MINUTE) < 10
             ? "0"
             : ""}
-          {Math.floor(duration - Math.floor(duration / 60) * 60)}
+          {Math.floor(duration - Math.floor(duration / SECONDS_IN_MINUTE) * SECONDS_IN_MINUTE)}
         </p>
       </div>
 
