@@ -59,6 +59,7 @@ const CreateUser = () => {
               rules={[{ required: true, message: "Please input your username!" }]}
             >
               <Input
+                id="inputText"
                 placeholder="name"
                 maxLength={16}
                 minLength={4}
@@ -71,6 +72,7 @@ const CreateUser = () => {
               rules={[{ required: true, message: "Please input your password!" }]}
             >
               <Input.Password
+                id="inputPass"
                 maxLength={16}
                 minLength={4}
                 placeholder="password"
@@ -82,6 +84,7 @@ const CreateUser = () => {
               rules={[{ required: true, message: "Please input your password!" }]}
             >
               <Input.Password
+                id="inputPass"
                 maxLength={16}
                 minLength={4}
                 placeholder="repeat password"

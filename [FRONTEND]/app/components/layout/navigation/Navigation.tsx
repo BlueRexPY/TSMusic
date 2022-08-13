@@ -14,9 +14,6 @@ const Navigation = () => {
   return (
     <div className={styles.nav_bar}>
       <LogoIcon />
-      <div onClick={() => router.push("/")}>
-        <HomeIcon />
-      </div>
       <div onClick={() => router.push("/tracks")}>
         <MusicIcon />
       </div>

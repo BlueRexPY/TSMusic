@@ -6,6 +6,7 @@ const StopIcon = () => {
   return (
     <>
       <Image
+        className="clickable"
         src={logoImg}
         width={50}
         height={50}

@@ -6,7 +6,7 @@ const AlbumIcon = () => {
   return (
     <div>
       <Image
-        className="icon"
+        className="icon clickable"
         src={logoImg}
         width={50}
         height={50}

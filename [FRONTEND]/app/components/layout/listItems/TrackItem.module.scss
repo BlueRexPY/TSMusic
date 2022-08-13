@@ -31,7 +31,7 @@
 }
 .side h4 {
     margin: 0;
-    font-size: 20px;
+    font-size: 16px;
     margin-left: 20px;
 }
 
@@ -47,7 +47,8 @@
     }
     .side h4 {
         font-size: 16px;
-        width: 200px;
-        white-space: nowrap;
+    }
+    .tracksItem {
+        height: 65px;
     }
 }

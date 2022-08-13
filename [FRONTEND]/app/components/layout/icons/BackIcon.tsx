@@ -9,7 +9,7 @@ const BackIcon = () => {
         src={logoImg}
         width={50}
         height={50}
-        className="noboard"
+        className="noboard clickable"
         alt="Back"
         draggable={false}
       />

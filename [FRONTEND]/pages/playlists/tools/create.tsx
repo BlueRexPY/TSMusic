@@ -69,7 +69,7 @@ const Create = () => {
         >
           {currentStep === 0 && (
             <div className="col w300 h100 jc_sa big">
-              <Input placeholder="Title" {...name} />
+              <Input placeholder="Title" {...name} id="inputText"/>
             </div>
           )}
           {currentStep === 1 && (

@@ -6,6 +6,7 @@ const VolumeIcon = () => {
   return (
     <div>
       <Image
+      className="clickable"
         src={logoImg}
         width={50}
         height={50}

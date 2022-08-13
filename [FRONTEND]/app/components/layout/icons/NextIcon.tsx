@@ -9,7 +9,7 @@ const NextIcon = () => {
         src={logoImg}
         width={50}
         height={50}
-        className="noboard"
+        className="noboard clickable"
         alt="Next"
         draggable={false}
       />

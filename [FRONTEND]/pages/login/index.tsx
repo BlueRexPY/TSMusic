@@ -71,13 +71,14 @@ const login = () => {
               className="col"
               rules={[{ required: true, message: "Please input your username!" }]}
             >
-              <Input maxLength={16} minLength={4} placeholder="name" {...name} />
+              <Input id="inputText" maxLength={16} minLength={4} placeholder="name" {...name} />
             </Form.Item>
             <Form.Item
               className="col"
               rules={[{ required: true, message: "Please input your password!" }]}
             >
               <Input.Password
+                id="inputPass"
                 maxLength={16}
                 minLength={4}
                 placeholder="password"
