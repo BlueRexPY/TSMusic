@@ -9,7 +9,7 @@ import * as path from 'path'
 
 @Module({
     imports: [
-        MongooseModule.forRoot("mongodb+srv://Blex:Blex@cluster0.ikchbxg.mongodb.net/TSMusic?retryWrites=true&w=majority"),
+        MongooseModule.forRoot("MONGO"),
         UserModule,
         AlbumModule,
         TrackModule,
