@@ -9,13 +9,13 @@ import { FileService, FileType } from '../file/file.service';
 export class TrackService {
 
     constructor(@InjectModel(Track.name) private trackModel: Model<TrackDocument>,
-    private fileService: FileService
+        private fileService: FileService
     ) { }
 
-    async create(dto:CreateTreackDto, picture, audio): Promise<Track> {
-        const audioPath = this.fileService.createFile(FileType.AUDIO,audio)
-        const picturePath = this.fileService.createFile(FileType.IMAGE,picture)
-        const track = await this.trackModel.create({...dto,listens: 0, picture:picturePath, audio:audioPath})
+    async create(dto: CreateTreackDto, picture, audio): Promise<Track> {
+        const audioPath = this.fileService.createFile(FileType.AUDIO, audio)
+        const picturePath = this.fileService.createFile(FileType.IMAGE, picture)
+        const track = await this.trackModel.create({ ...dto, listens: 0, picture: picturePath, audio: audioPath })
         return track
     }
 
@@ -24,17 +24,17 @@ export class TrackService {
         return tracks;
     }
 
-    async getOne(id:ObjectId): Promise<Track>  {
+    async getOne(id: ObjectId): Promise<Track> {
         const track = await this.trackModel.findById(id)
         return track
     }
 
     async getTop(count = 1): Promise<Track[]> {
-        const track = await this.trackModel.find().sort({listens: -1}).limit(count)
+        const track = await this.trackModel.find().sort({ listens: -1 }).limit(count)
         return track
     }
 
-    async delete(id:ObjectId): Promise<ObjectId> {
+    async delete(id: ObjectId): Promise<ObjectId> {
         const track = await this.trackModel.findByIdAndDelete(id)
         return track._id
     }
@@ -47,14 +47,14 @@ export class TrackService {
 
     async searchName(query: string): Promise<Track[]> {
         const tracks = await this.trackModel.find({
-            name: {$regex: new RegExp(query, 'i')}
+            name: { $regex: new RegExp(query, 'i') }
         })
         return tracks;
     }
 
     async searchArtist(query: string): Promise<Track[]> {
         const tracks = await this.trackModel.find({
-            artist: {$regex: new RegExp(query, 'i')}
+            artist: { $regex: new RegExp(query, 'i') }
         })
         return tracks;
     }

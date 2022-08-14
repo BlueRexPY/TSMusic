@@ -9,12 +9,12 @@ import { FileService, FileType } from '../file/file.service';
 export class AlbumService {
 
     constructor(@InjectModel(Album.name) private albumModel: Model<AlbumDocument>,
-    private fileService: FileService
+        private fileService: FileService
     ) { }
 
-    async create(dto:CreateAlbumDto, picture): Promise<Album> {
-        const picturePath = this.fileService.createFile(FileType.IMAGE,picture)
-        const albume = await this.albumModel.create({tracks:dto.tracks.split(" "),name:dto.name,author:dto.author,listens: 0, picture:picturePath})
+    async create(dto: CreateAlbumDto, picture): Promise<Album> {
+        const picturePath = this.fileService.createFile(FileType.IMAGE, picture)
+        const albume = await this.albumModel.create({ tracks: dto.tracks.split(" "), name: dto.name, author: dto.author, listens: 0, picture: picturePath })
         return albume
     }
 
@@ -23,22 +23,22 @@ export class AlbumService {
         return albums;
     }
 
-    async getOneById(id:ObjectId): Promise<{listens:number,author:string,tracks:string[],name:string,picture:string}> {
+    async getOneById(id: ObjectId): Promise<{ listens: number, author: string, tracks: string[], name: string, picture: string }> {
         const albume = await this.albumModel.findById(id)
-        return {tracks:albume.tracks,listens:albume.listens,author:albume.author,name:albume.name,picture:albume.picture}
+        return { tracks: albume.tracks, listens: albume.listens, author: albume.author, name: albume.name, picture: albume.picture }
     }
 
-    async getOneByName(albumeName:string): Promise<{listens:number,author:string,tracks:string[],name:string,picture:string}> {
-        const albume = await this.albumModel.findOne({name:albumeName})
-        return {tracks:albume.tracks,listens:albume.listens,author:albume.author,name:albume.name,picture:albume.picture}
+    async getOneByName(albumeName: string): Promise<{ listens: number, author: string, tracks: string[], name: string, picture: string }> {
+        const albume = await this.albumModel.findOne({ name: albumeName })
+        return { tracks: albume.tracks, listens: albume.listens, author: albume.author, name: albume.name, picture: albume.picture }
     }
 
     async getTop(count = 5): Promise<Album[]> {
-        const albume = await this.albumModel.find().sort({listens: -1}).limit(count)
+        const albume = await this.albumModel.find().sort({ listens: -1 }).limit(count)
         return albume
     }
 
-    async delete(id:ObjectId): Promise<ObjectId> {
+    async delete(id: ObjectId): Promise<ObjectId> {
         const albume = await this.albumModel.findByIdAndDelete(id)
         return albume._id
     }
@@ -51,7 +51,7 @@ export class AlbumService {
 
     async searchName(query: string): Promise<Album[]> {
         const albums = await this.albumModel.find({
-            name: {$regex: new RegExp(query, 'i')}
+            name: { $regex: new RegExp(query, 'i') }
         })
         return albums;
     }

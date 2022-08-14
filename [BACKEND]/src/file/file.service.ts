@@ -10,27 +10,18 @@ export enum FileType {
 }
 
 @Injectable()
-export class FileService{
+export class FileService {
 
     createFile(type: FileType, file): string {
-         try {
+        try {
             const gc = new Storage({ keyFilename: "google-cloud-key.json" });
-            gc.getBuckets().then(x => console.log(x))
             const fileExtension = file.originalname.split('.').pop()
             const fileName = uuid.v4() + '.' + fileExtension
             const filePath = path.resolve(__dirname, '..', 'static', type)
-            
-            if(!fs.existsSync(filePath)) {
-                fs.mkdirSync(filePath, {recursive: true})
-            }
+            if (!fs.existsSync(filePath)) { fs.mkdirSync(filePath, { recursive: true }) }
             fs.writeFileSync(path.resolve(filePath, fileName), file.buffer)
-            
-            gc.bucket("tsmusic-files").upload(filePath+"//"+fileName, {
-                destination: fileName,
-              });
-
+            gc.bucket("tsmusic-files").upload(filePath + "/" + fileName, { destination: fileName, })
             return `https://storage.cloud.google.com/tsmusic-files/${fileName}`
-
         } catch (e) {
             throw new HttpException(e.message, HttpStatus.INTERNAL_SERVER_ERROR)
         }

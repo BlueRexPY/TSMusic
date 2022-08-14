@@ -7,20 +7,20 @@ import { CreateAlbumDto } from "./dto/create-album.dto";
 @Controller('/albums')
 
 export class AlbumController {
-    constructor(private albumService: AlbumService) {}
-    
+    constructor(private albumService: AlbumService) { }
+
     @Post()
     @Bind(UploadedFiles())
     @UseInterceptors(FileFieldsInterceptor([
         { name: 'picture', maxCount: 1 }
     ]))
-    create(@UploadedFiles() files ,@Body() dto: CreateAlbumDto ) {
-        return this.albumService.create(dto,files.picture[0],)
+    create(@UploadedFiles() files, @Body() dto: CreateAlbumDto) {
+        return this.albumService.create(dto, files.picture[0],)
     }
 
     @Get()
     getAll(@Query('count') count: number,
-           @Query('offset') offset: number) {
+        @Query('offset') offset: number) {
         return this.albumService.getAll(count, offset)
     }
 
@@ -33,12 +33,12 @@ export class AlbumController {
     getOneById(@Param("id") id: ObjectId) {
         return this.albumService.getOneById(id)
     }
-    
+
     @Delete(":id")
     delete(@Param("id") id: ObjectId) {
         return this.albumService.delete(id)
-    }     
-    
+    }
+
     @Post('/listen/:id')
     listen(@Param('id') id: ObjectId) {
         return this.albumService.listen(id);
