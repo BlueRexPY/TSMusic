@@ -1,6 +1,7 @@
 ![Banner](https://cdn.discordapp.com/attachments/736633764930912257/991600460685377607/unknown.png)
 
-# TSMusic - https://ts-music.vercel.app/
+# TSMusic
+### https://ts-music.vercel.app/
 
 ## For full functionality use Admin:Admin
 
