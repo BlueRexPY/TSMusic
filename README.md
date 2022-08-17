@@ -3,7 +3,7 @@
 # TSMusic
 ### https://ts-music.vercel.app/
 
-** For full functionality use ```Admin:Admin``` **
+#### For full functionality use ```Admin:Admin```
 
 ### Description 
 FronEnd- created with:<br>
